@@ -51,7 +51,7 @@ const subCategoryOptions = ref([
   { label: "여가", value: "여가" },
 ]);
 
-const dateValRef = ref();
+const dateValRef = ref(new Date());
 const sourceValueRef = ref();
 const titleValueRef = ref();
 const amountValueRef = ref(0);
@@ -64,7 +64,32 @@ const subCategoryValueRef = ref();
     <Header />
 
     <div class="flex">
-      <Card class="mr-6 min-w-fit">
+      <Card class="mr-6 grow">
+        <template #title>
+          <h1 class="font-semibold">History</h1>
+        </template>
+        <template #content>
+          <DataTable
+            :value="items"
+            showGridlines
+            resizableColumns
+            autoLayout
+            columnResizeMode="fit"
+            responsiveLayout="scroll"
+            class="p-datatable-sm"
+          >
+            <Column
+              v-for="col of columns"
+              :field="col.field"
+              :header="col.header"
+              :key="col.field"
+              class="text-sm"
+            />
+          </DataTable>
+        </template>
+      </Card>
+
+      <Card class="min-w-fit">
         <template #title><h1 class="font-semibold">New item</h1></template>
         <template #content>
           <div class="flex flex-col">
@@ -143,30 +168,6 @@ const subCategoryValueRef = ref();
           <div class="flex justify-end">
             <Button label="Add" class="p-button-sm" />
           </div>
-        </template>
-      </Card>
-      <Card class="grow">
-        <template #title>
-          <h1 class="font-semibold">History</h1>
-        </template>
-        <template #content>
-          <DataTable
-            :value="items"
-            showGridlines
-            resizableColumns
-            autoLayout
-            columnResizeMode="fit"
-            responsiveLayout="scroll"
-            class="p-datatable-sm"
-          >
-            <Column
-              v-for="col of columns"
-              :field="col.field"
-              :header="col.header"
-              :key="col.field"
-              class="text-sm"
-            />
-          </DataTable>
         </template>
       </Card>
     </div>
