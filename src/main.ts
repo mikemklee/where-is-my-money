@@ -14,6 +14,7 @@ import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
 import SelectButton from 'primevue/selectbutton';
 import Calendar from 'primevue/calendar';
+import Dropdown from 'primevue/dropdown';
 
 
 import './style.css'
@@ -36,5 +37,6 @@ app.component('InputNumber', InputNumber);
 app.component('InputText', InputText);
 app.component('SelectButton', SelectButton);
 app.component('Calendar', Calendar);
+app.component('Dropdown', Dropdown);
 
 app.mount('#app')

@@ -9,7 +9,6 @@ const items = [
     amount: 18.29,
     category: "변동지출",
     "sub-category": "음식",
-    notes: "닭 620g, 요거트 500g, 시리얼 300g, 다이제 1통 (다이제 맛있음)",
   },
   {
     date: 1658588456123,
@@ -19,7 +18,6 @@ const items = [
     amount: 16.79,
     category: "변동지출",
     "sub-category": "교통",
-    notes: "",
   },
   {
     date: 1658588456123,
@@ -29,7 +27,6 @@ const items = [
     amount: 124.0,
     category: "비정기지출",
     "sub-category": "여가",
-    notes: "",
   },
 ];
 const columns = [
@@ -39,13 +36,26 @@ const columns = [
   { field: "amount", header: "Amount" },
   { field: "category", header: "Category" },
   { field: "sub-category", header: "Sub-category" },
-  { field: "notes", header: "Notes" },
 ];
+
+const categoryOptions = ref([
+  { label: "변동지출", value: "변동지출" },
+  { label: "비정기지출", value: "비정기지출" },
+  { label: "수입", value: "수입" },
+]);
+
+const subCategoryOptions = ref([
+  { label: "음식", value: "음식" },
+  { label: "교통", value: "교통" },
+  { label: "여가", value: "여가" },
+]);
 
 const dateValRef = ref();
 const sourceValueRef = ref();
 const titleValueRef = ref();
 const amountValueRef = ref(0);
+const categoryValueRef = ref();
+const subCategoryValueRef = ref();
 </script>
 
 <template>
@@ -54,7 +64,7 @@ const amountValueRef = ref(0);
       <template #title><h1 class="font-semibold">New item</h1></template>
       <template #content>
         <div class="flex flex-col">
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-2 mb-4">
             <!-- Date -->
             <div class="flex flex-col">
               <label for="basic">Date</label>
@@ -72,7 +82,7 @@ const amountValueRef = ref(0);
               />
             </div>
           </div>
-          <div class="flex flex-col">
+          <div class="flex flex-col mb-4">
             <!-- Source -->
             <div class="flex flex-col">
               <h5>Source</h5>
@@ -100,6 +110,30 @@ const amountValueRef = ref(0);
               <small id="title-help">e.g. trip from Downtown to home</small>
             </div>
           </div>
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <!-- Category -->
+            <div class="flex flex-col">
+              <h5>Category</h5>
+              <Dropdown
+                v-model="categoryValueRef"
+                :options="categoryOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select a category"
+              />
+            </div>
+            <!-- Sub-category -->
+            <div class="flex flex-col">
+              <h5>Sub-category</h5>
+              <Dropdown
+                v-model="subCategoryValueRef"
+                :options="subCategoryOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select a sub-category"
+              />
+            </div>
+          </div>
         </div>
 
         <div class="flex justify-end">
@@ -107,7 +141,7 @@ const amountValueRef = ref(0);
         </div>
       </template>
     </Card>
-    <Card>
+    <Card class="grow">
       <template #title>
         <h1 class="font-semibold">History</h1>
       </template>
