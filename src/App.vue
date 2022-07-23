@@ -48,7 +48,7 @@ const columns = [
     <Card class="mb-6">
       <template #title><h1 class="font-semibold">New item</h1></template>
       <template #content>
-        <Button>Add</Button>
+        <Button label="Add" class="p-button-sm" />
       </template>
     </Card>
     <Card>
