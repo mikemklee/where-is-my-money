@@ -115,28 +115,24 @@ const subCategoryValueRef = ref();
               <!-- Source -->
               <div class="flex flex-col">
                 <h5>Source</h5>
-                <span class="p-float-label">
-                  <InputText
-                    id="source"
-                    type="text"
-                    v-model="sourceValueRef"
-                    class="w-full"
-                  />
-                </span>
-                <small id="source-help">e.g. Uber</small>
+                <InputText
+                  id="source"
+                  type="text"
+                  v-model="sourceValueRef"
+                  class="w-full"
+                  placeholder="e.g. Uber"
+                />
               </div>
               <!-- Title -->
               <div class="flex flex-col">
                 <h5>Title</h5>
-                <span class="p-float-label">
-                  <InputText
-                    id="title"
-                    type="text"
-                    v-model="titleValueRef"
-                    class="w-full"
-                  />
-                </span>
-                <small id="title-help">e.g. trip from Downtown to home</small>
+                <InputText
+                  id="title"
+                  type="text"
+                  v-model="titleValueRef"
+                  class="w-full"
+                  placeholder="e.g. trip from Downtown to the home"
+                />
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2 mb-4">
