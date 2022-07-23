@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "date-fns": "^2.29.1",
     "primeicons": "^5.0.0",
     "primevue": "^3",
     "vue": "^3.2.37"
