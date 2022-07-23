@@ -13,7 +13,7 @@ import Card from 'primevue/card';
 
 
 import './style.css'
-import 'primevue/resources/themes/lara-light-indigo/theme.css';
+import 'primevue/resources/themes/tailwind-light/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
