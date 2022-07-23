@@ -34,7 +34,7 @@ const items = [
     net: -1,
     amount: 18.29,
     category: "변동지출",
-    "sub-category": "음식",
+    subCategory: "음식",
   },
   {
     date: 1658588456123,
@@ -43,7 +43,7 @@ const items = [
     net: -1,
     amount: 16.79,
     category: "변동지출",
-    "sub-category": "교통",
+    subCategory: "교통",
   },
   {
     date: 1658588456123,
@@ -52,7 +52,7 @@ const items = [
     net: -1,
     amount: 124.0,
     category: "비정기지출",
-    "sub-category": "여가",
+    subCategory: "여가",
   },
 ];
 const columns = [
@@ -61,7 +61,7 @@ const columns = [
   { field: "title", header: "Title" },
   { field: "amount", header: "Amount" },
   { field: "category", header: "Category" },
-  { field: "sub-category", header: "Sub-category" },
+  { field: "subCategory", header: "Sub-category" },
 ];
 </script>
 

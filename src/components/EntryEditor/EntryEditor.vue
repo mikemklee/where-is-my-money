@@ -1,6 +1,6 @@
 <template>
   <Card class="min-w-fit">
-    <template #title><h1 class="font-semibold">New item</h1></template>
+    <template #title><h1 class="font-semibold">New entry</h1></template>
     <template #content>
       <div class="flex flex-col">
         <div class="grid grid-cols-2 gap-2 mb-4">
@@ -72,7 +72,7 @@
       </div>
 
       <div class="flex justify-end">
-        <Button label="Add" class="p-button-sm" />
+        <Button label="Save" class="p-button-sm" />
       </div>
     </template>
   </Card>

@@ -14,8 +14,4 @@ import History from "./components/History/History.vue";
   </div>
 </template>
 
-<style scoped>
-.hide-box-shadow {
-  box-shadow: none;
-}
-</style>
+<style scoped></style>
