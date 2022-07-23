@@ -13,6 +13,7 @@ import Row from 'primevue/row';                     //optional for row
 import InputNumber from 'primevue/inputnumber';                   
 import InputText from 'primevue/inputtext';
 import SelectButton from 'primevue/selectbutton';
+import Calendar from 'primevue/calendar';
 
 
 import './style.css'
@@ -34,5 +35,6 @@ app.component('Row', Row);
 app.component('InputNumber', InputNumber);
 app.component('InputText', InputText);
 app.component('SelectButton', SelectButton);
+app.component('Calendar', Calendar);
 
 app.mount('#app')
