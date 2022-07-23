@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 const items = [
   {
     date: 1658588456123,
@@ -41,6 +42,12 @@ const columns = [
   { field: "sub-category", header: "Sub-category" },
   { field: "notes", header: "Notes" },
 ];
+
+const sourceValueRef = ref();
+const titleValueRef = ref();
+const incomeOrExpenseValueRef = ref("Expense");
+const incomeOrExpenseOptionsRef = ref(["Expense", "Income"]);
+const amountValueRef = ref(0);
 </script>
 
 <template>
@@ -48,7 +55,42 @@ const columns = [
     <Card class="mb-6">
       <template #title><h1 class="font-semibold">New item</h1></template>
       <template #content>
-        <Button label="Add" class="p-button-sm" />
+        <div class="grid grid-cols-4 gap-2 mb-4 text-sm">
+          <div class="flex flex-col">
+            <h5>Source</h5>
+            <span class="p-float-label">
+              <InputText id="source" type="text" v-model="sourceValueRef" />
+              <label for="source">e.g Uber</label>
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <h5>Title</h5>
+            <span class="p-float-label">
+              <InputText id="title" type="text" v-model="titleValueRef" />
+              <label for="title">e.g. trip from Finch to home</label>
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <h5>Expense or Income</h5>
+            <SelectButton
+              v-model="incomeOrExpenseValueRef"
+              :options="incomeOrExpenseOptionsRef"
+            />
+          </div>
+          <div class="flex flex-col">
+            <label for="currency-us">Amount</label>
+            <InputNumber
+              id="currency-us"
+              v-model="amountValueRef"
+              mode="currency"
+              currency="USD"
+              locale="en-US"
+            />
+          </div>
+        </div>
+        <div class="">
+          <Button label="Add" class="p-button-sm" />
+        </div>
       </template>
     </Card>
     <Card>
