@@ -25,14 +25,25 @@ const columns = [
 </script>
 
 <template>
-  <DataTable :value="cars">
-    <Column
-      v-for="col of columns"
-      :field="col.field"
-      :header="col.header"
-      :key="col.field"
-    ></Column>
-  </DataTable>
+  <Card>
+    <template #title> New item </template>
+    <template #content>
+      <Button>Add</Button>
+    </template>
+  </Card>
+  <Card>
+    <template #title> Data </template>
+    <template #content>
+      <DataTable :value="cars">
+        <Column
+          v-for="col of columns"
+          :field="col.field"
+          :header="col.header"
+          :key="col.field"
+        />
+      </DataTable>
+    </template>
+  </Card>
 </template>
 
 <style scoped>

@@ -9,6 +9,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';                     //optional for row
+import Card from 'primevue/card';
 
 
 import './style.css'
@@ -22,6 +23,7 @@ const app = createApp(App)
 app.use(PrimeVue)
 app.component('Dialog', Dialog);
 app.component('Button', Button);
+app.component('Card', Card);
 app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('ColumnGroup', ColumnGroup);
