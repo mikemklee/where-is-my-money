@@ -55,26 +55,34 @@ const amountValueRef = ref(0);
     <Card class="mb-6">
       <template #title><h1 class="font-semibold">New item</h1></template>
       <template #content>
-        <div class="grid grid-cols-4 gap-2 mb-4 text-sm">
+        <div class="grid grid-cols-4 gap-4 mb-4">
           <div class="flex flex-col">
             <h5>Source</h5>
             <span class="p-float-label">
-              <InputText id="source" type="text" v-model="sourceValueRef" />
-              <label for="source">e.g Uber</label>
+              <InputText
+                id="source"
+                type="text"
+                v-model="sourceValueRef"
+                class="w-full"
+              />
             </span>
+            <small id="source-help">e.g. Uber</small>
           </div>
           <div class="flex flex-col">
             <h5>Title</h5>
             <span class="p-float-label">
-              <InputText id="title" type="text" v-model="titleValueRef" />
-              <label for="title">e.g. trip from Finch to home</label>
+              <InputText id="title" type="text" v-model="titleValueRef" class="w-full" />
             </span>
+            <small id="title-help">e.g. trip from Downtown to home</small>
           </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 mb-4">
           <div class="flex flex-col">
-            <h5>Expense or Income</h5>
+            <h5>Type</h5>
             <SelectButton
               v-model="incomeOrExpenseValueRef"
               :options="incomeOrExpenseOptionsRef"
+              class="hide-box-shadow"
             />
           </div>
           <div class="flex flex-col">
@@ -84,11 +92,12 @@ const amountValueRef = ref(0);
               v-model="amountValueRef"
               mode="currency"
               currency="USD"
-              locale="en-US"
+              locale="en-US" 
             />
           </div>
         </div>
-        <div class="">
+
+        <div class="flex justify-end">
           <Button label="Add" class="p-button-sm" />
         </div>
       </template>
@@ -119,4 +128,8 @@ const amountValueRef = ref(0);
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.hide-box-shadow {
+  box-shadow: none;
+}
+</style>
