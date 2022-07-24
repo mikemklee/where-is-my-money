@@ -54,7 +54,7 @@
               :options="categoryOptions"
               optionLabel="label"
               optionValue="value"
-              placeholder="Select a category"
+              placeholder="Select one"
             />
           </div>
           <!-- Sub-category -->
@@ -65,7 +65,7 @@
               :options="subCategoryOptions"
               optionLabel="label"
               optionValue="value"
-              placeholder="Select a sub-category"
+              placeholder="Select one"
             />
           </div>
         </div>
