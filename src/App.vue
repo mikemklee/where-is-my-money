@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import EntryEditor from "./components/EntryEditor/EntryEditor.vue";
 import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 import History from "./components/History/History.vue";
 </script>
 
@@ -11,6 +12,7 @@ import History from "./components/History/History.vue";
       <History />
       <EntryEditor />
     </div>
+    <Footer />
   </div>
 </template>
 
