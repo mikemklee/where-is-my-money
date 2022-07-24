@@ -4,20 +4,11 @@
     <template #content>
       <div class="flex flex-col">
         <div class="grid grid-cols-2 gap-2 mb-4">
-          <!-- Date -->
           <div class="flex flex-col">
             <DateField :date="dateValRef" />
           </div>
-          <!-- Amount -->
           <div class="flex flex-col">
-            <label for="currency-us">Amount</label>
-            <InputNumber
-              id="currency-us"
-              v-model="amountValueRef"
-              mode="currency"
-              currency="USD"
-              locale="en-US"
-            />
+            <AmountField :amount="amountValueRef" />
           </div>
         </div>
         <div class="flex flex-col">
@@ -80,6 +71,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import DateField from "./Fields/DateField.vue";
+import AmountField from "./Fields/AmountField.vue";
 
 const categoryOptions = ref([
   { label: "변동지출", value: "변동지출" },
