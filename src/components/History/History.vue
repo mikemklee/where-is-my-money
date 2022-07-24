@@ -13,46 +13,34 @@
         responsiveLayout="scroll"
         class="p-datatable-sm"
       >
-        <Column field="date" header="date">
+        <Column field="date" header="Date">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.date }}
-            </div>
+            <DateColumn :slotProps="slotProps" />
           </template>
         </Column>
-        <Column field="source" header="source">
+        <Column field="source" header="Source">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.source }}
-            </div>
+            <SourceColumn :slotProps="slotProps" />
           </template>
         </Column>
-        <Column field="title" header="title">
+        <Column field="title" header="Title">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.title }}
-            </div>
+            <TitleColumn :slotProps="slotProps" />
           </template>
         </Column>
-        <Column field="amount" header="amount">
+        <Column field="amount" header="Amount">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.amount }}
-            </div>
+            <AmountColumn :slotProps="slotProps" />
           </template>
         </Column>
-        <Column field="category" header="category">
+        <Column field="category" header="Category">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.category }}
-            </div>
+            <CategoryColumn :slotProps="slotProps" />
           </template>
         </Column>
-        <Column field="subCategory" header="subCategory">
+        <Column field="subCategory" header="Sub-category">
           <template #body="slotProps">
-            <div class="max-w-md whitespace-normal">
-              {{ slotProps.data.subCategory }}
-            </div>
+            <SubCategoryColumn :slotProps="slotProps" />
           </template>
         </Column>
       </DataTable>
@@ -61,6 +49,12 @@
 </template>
 
 <script setup lang="ts">
+import DateColumn from "./Columns/DateColumn.vue";
+import SourceColumn from "./Columns/SourceColumn.vue";
+import TitleColumn from "./Columns/TitleColumn.vue";
+import AmountColumn from "./Columns/AmountColumn.vue";
+import CategoryColumn from "./Columns/CategoryColumn.vue";
+import SubCategoryColumn from "./Columns/SubCategoryColumn.vue";
 const items = [
   {
     date: 1658588456123,
