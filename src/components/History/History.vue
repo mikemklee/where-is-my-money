@@ -8,7 +8,6 @@
         :value="items"
         showGridlines
         resizableColumns
-        autoLayout
         columnResizeMode="fit"
         responsiveLayout="scroll"
         class="p-datatable-sm"
@@ -67,6 +66,15 @@ const items = [
   },
   {
     date: 1658588456123,
+    source: "Kijiji",
+    title: "Nikon DSLR 카메라 판매",
+    net: 1,
+    amount: 240,
+    category: "수입",
+    subCategory: "중고거래",
+  },
+  {
+    date: 1658588456123,
     source: "Uber",
     title: "핀치 - 집 택시비",
     net: -1,
@@ -82,17 +90,7 @@ const items = [
     amount: 124.0,
     category: "비정기지출",
     subCategory: "여가",
-    notes:
-      "yoyoyo lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
-];
-const columns = [
-  { field: "date", header: "Date" },
-  { field: "source", header: "Source" },
-  { field: "title", header: "Title" },
-  { field: "amount", header: "Amount" },
-  { field: "category", header: "Category" },
-  { field: "subCategory", header: "Sub-category" },
 ];
 </script>
 
