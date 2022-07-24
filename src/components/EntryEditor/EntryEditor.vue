@@ -12,20 +12,12 @@
           </div>
         </div>
         <div class="flex flex-col">
-          <!-- Source -->
           <div class="flex flex-col mb-4">
             <SourceField :source="sourceValueRef" />
           </div>
           <!-- Title -->
           <div class="flex flex-col mb-4">
-            <h5>Title</h5>
-            <InputText
-              id="title"
-              type="text"
-              v-model="titleValueRef"
-              class="w-full"
-              placeholder="e.g. trip from Downtown to the home"
-            />
+            <TitleField :title="titleValueRef" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-4">
@@ -66,6 +58,7 @@ import { ref } from "vue";
 import AmountField from "./Fields/AmountField.vue";
 import DateField from "./Fields/DateField.vue";
 import SourceField from "./Fields/SourceField.vue";
+import TitleField from "./Fields/TitleField.vue";
 
 const categoryOptions = ref([
   { label: "변동지출", value: "변동지출" },
