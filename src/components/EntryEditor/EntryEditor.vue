@@ -15,22 +15,13 @@
           <div class="flex flex-col mb-4">
             <SourceField :source="sourceValueRef" />
           </div>
-          <!-- Title -->
           <div class="flex flex-col mb-4">
             <TitleField :title="titleValueRef" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-4">
-          <!-- Category -->
           <div class="flex flex-col">
-            <h5>Category</h5>
-            <Dropdown
-              v-model="categoryValueRef"
-              :options="categoryOptions"
-              optionLabel="label"
-              optionValue="value"
-              placeholder="Select one"
-            />
+            <CategoryField :category="categoryValueRef" />
           </div>
           <!-- Sub-category -->
           <div class="flex flex-col">
@@ -56,15 +47,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import AmountField from "./Fields/AmountField.vue";
+import CategoryField from "./Fields/CategoryField.vue";
 import DateField from "./Fields/DateField.vue";
 import SourceField from "./Fields/SourceField.vue";
 import TitleField from "./Fields/TitleField.vue";
-
-const categoryOptions = ref([
-  { label: "변동지출", value: "변동지출" },
-  { label: "비정기지출", value: "비정기지출" },
-  { label: "수입", value: "수입" },
-]);
 
 const subCategoryOptions = ref([
   { label: "음식", value: "음식" },
@@ -73,10 +59,10 @@ const subCategoryOptions = ref([
 ]);
 
 const dateValRef = ref(new Date());
-const sourceValueRef = ref();
-const titleValueRef = ref();
+const sourceValueRef = ref("");
+const titleValueRef = ref("");
 const amountValueRef = ref(0);
-const categoryValueRef = ref();
+const categoryValueRef = ref(null);
 const subCategoryValueRef = ref();
 </script>
 
