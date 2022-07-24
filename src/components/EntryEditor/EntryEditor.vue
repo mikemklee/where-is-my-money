@@ -6,8 +6,7 @@
         <div class="grid grid-cols-2 gap-2 mb-4">
           <!-- Date -->
           <div class="flex flex-col">
-            <label for="basic">Date</label>
-            <Calendar id="basic" v-model="dateValRef" autocomplete="off" />
+            <DateField :date="dateValRef" />
           </div>
           <!-- Amount -->
           <div class="flex flex-col">
@@ -21,9 +20,9 @@
             />
           </div>
         </div>
-        <div class="flex flex-col mb-4">
+        <div class="flex flex-col">
           <!-- Source -->
-          <div class="flex flex-col">
+          <div class="flex flex-col mb-4">
             <h5>Source</h5>
             <InputText
               id="source"
@@ -34,7 +33,7 @@
             />
           </div>
           <!-- Title -->
-          <div class="flex flex-col">
+          <div class="flex flex-col mb-4">
             <h5>Title</h5>
             <InputText
               id="title"
@@ -72,7 +71,7 @@
       </div>
 
       <div class="flex justify-end">
-        <Button label="Save" class="p-button-sm" />
+        <Button label="Save" class="p-button-sm min-w-[6rem]" />
       </div>
     </template>
   </Card>
@@ -80,6 +79,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import DateField from "./Fields/DateField.vue";
 
 const categoryOptions = ref([
   { label: "변동지출", value: "변동지출" },
