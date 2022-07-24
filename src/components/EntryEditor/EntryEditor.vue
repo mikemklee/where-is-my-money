@@ -14,14 +14,7 @@
         <div class="flex flex-col">
           <!-- Source -->
           <div class="flex flex-col mb-4">
-            <h5>Source</h5>
-            <InputText
-              id="source"
-              type="text"
-              v-model="sourceValueRef"
-              class="w-full"
-              placeholder="e.g. Uber"
-            />
+            <SourceField :source="sourceValueRef" />
           </div>
           <!-- Title -->
           <div class="flex flex-col mb-4">
@@ -70,8 +63,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import DateField from "./Fields/DateField.vue";
 import AmountField from "./Fields/AmountField.vue";
+import DateField from "./Fields/DateField.vue";
+import SourceField from "./Fields/SourceField.vue";
 
 const categoryOptions = ref([
   { label: "변동지출", value: "변동지출" },
