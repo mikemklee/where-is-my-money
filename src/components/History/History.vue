@@ -13,13 +13,48 @@
         responsiveLayout="scroll"
         class="p-datatable-sm"
       >
-        <Column
-          v-for="col of columns"
-          :field="col.field"
-          :header="col.header"
-          :key="col.field"
-          class="text-sm"
-        />
+        <Column field="date" header="date">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.date }}
+            </div>
+          </template>
+        </Column>
+        <Column field="source" header="source">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.source }}
+            </div>
+          </template>
+        </Column>
+        <Column field="title" header="title">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.title }}
+            </div>
+          </template>
+        </Column>
+        <Column field="amount" header="amount">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.amount }}
+            </div>
+          </template>
+        </Column>
+        <Column field="category" header="category">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.category }}
+            </div>
+          </template>
+        </Column>
+        <Column field="subCategory" header="subCategory">
+          <template #body="slotProps">
+            <div class="max-w-md whitespace-normal">
+              {{ slotProps.data.subCategory }}
+            </div>
+          </template>
+        </Column>
       </DataTable>
     </template>
   </Card>
@@ -53,6 +88,8 @@ const items = [
     amount: 124.0,
     category: "비정기지출",
     subCategory: "여가",
+    notes:
+      "yoyoyo lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
 ];
 const columns = [
