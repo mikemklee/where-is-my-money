@@ -61,7 +61,7 @@ const items = [
     title: "닭 허벅지살 + 요거트 + 시리얼",
     net: -1,
     amount: 18.29,
-    category: "변동지출",
+    category: "variable_expense",
     subCategory: "음식",
   },
   {
@@ -70,7 +70,7 @@ const items = [
     title: "Nikon DSLR 카메라 판매",
     net: 1,
     amount: 240,
-    category: "수입",
+    category: "variable_income",
     subCategory: "중고거래",
   },
   {
@@ -79,7 +79,7 @@ const items = [
     title: "핀치 - 집 택시비",
     net: -1,
     amount: 16.79,
-    category: "변동지출",
+    category: "variable_expense",
     subCategory: "교통",
   },
   {
@@ -88,7 +88,7 @@ const items = [
     title: "동기모임 카티지여행 정산",
     net: -1,
     amount: 124.0,
-    category: "비정기지출",
+    category: "other_expense",
     subCategory: "여가",
   },
 ];
