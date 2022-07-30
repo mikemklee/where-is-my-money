@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "date-fns": "^2.29.1",
+    "pinia": "^2.0.17",
     "primeicons": "^5.0.0",
     "primevue": "^3",
     "vue": "^3.2.37"
