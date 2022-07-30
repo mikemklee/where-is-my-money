@@ -30,7 +30,7 @@
       </div>
 
       <div class="flex justify-end">
-        <Button label="Save" class="p-button-sm min-w-[6rem]" />
+        <Button label="Save" class="p-button-sm min-w-[6rem]" @click="getTodos" />
       </div>
     </template>
   </Card>
@@ -38,12 +38,15 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+
 import AmountField from "./Fields/AmountField.vue";
 import CategoryField from "./Fields/CategoryField.vue";
 import DateField from "./Fields/DateField.vue";
 import SourceField from "./Fields/SourceField.vue";
 import SubCategoryField from "./Fields/SubCategoryField.vue";
 import TitleField from "./Fields/TitleField.vue";
+import { useTodos } from "../../store";
 
 const dateValRef = ref(new Date());
 const sourceValueRef = ref("");
@@ -51,6 +54,14 @@ const titleValueRef = ref("");
 const amountValueRef = ref(0);
 const categoryValueRef = ref(null);
 const subCategoryValueRef = ref(null);
+
+const todosStore = useTodos();
+
+const { todos } = storeToRefs(todosStore);
+
+async function getTodos() {
+  await todosStore.testAction();
+}
 </script>
 
 <style scoped></style>

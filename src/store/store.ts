@@ -47,5 +47,11 @@ export const useTodos = defineStore('todos', {
       // you can directly mutate the state
       this.todos.push({ text, id: this.nextId++, isFinished: false })
     },
+    async testAction() {
+      console.log('test action')
+      const response = await fetch('http://localhost:8000/items')
+      const data = await response.json()
+      console.log('Response data!', data)
+    }
   },
 })
