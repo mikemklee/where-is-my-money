@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+
 import App from './App.vue'
 
 // PrimeVue imports
@@ -23,7 +25,11 @@ import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import './primevue-theme-override.css'
 
+const pinia = createPinia()
+
 const app = createApp(App)
+
+app.use(pinia)
 
 // PrimeVue configs
 app.use(PrimeVue)
