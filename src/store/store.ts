@@ -42,16 +42,20 @@ export const useTodos = defineStore('todos', {
     },
   },
   actions: {
-    // any amount of arguments, return a promise or not
-    addTodo(text: string) {
-      // you can directly mutate the state
-      this.todos.push({ text, id: this.nextId++, isFinished: false })
+    async addTodo(title: string) {
+        console.log('add todo action')
+        const response = await fetch('http://localhost:8000/items', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({title})
+        })
+        const data = await response.json()
+        console.log('Response data!', data)
+      //   // you can directly mutate the state
+      //   this.todos.push({ text, id: this.nextId++, isFinished: false })
     },
-    async testAction() {
-      console.log('test action')
-      const response = await fetch('http://localhost:8000/items')
-      const data = await response.json()
-      console.log('Response data!', data)
-    }
-  },
+  }
 })

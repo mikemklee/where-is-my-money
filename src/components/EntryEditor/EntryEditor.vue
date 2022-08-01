@@ -16,7 +16,7 @@
             <SourceField :source="sourceValueRef" />
           </div>
           <div class="flex flex-col mb-4">
-            <TitleField :title="titleValueRef" />
+            <TitleField :title="titleValueRef" @onUpdate="updateTitle" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-4">
@@ -30,7 +30,7 @@
       </div>
 
       <div class="flex justify-end">
-        <Button label="Save" class="p-button-sm min-w-[6rem]" @click="getTodos" />
+        <Button label="Save" class="p-button-sm min-w-[6rem]" @click="saveEntry" />
       </div>
     </template>
   </Card>
@@ -59,8 +59,13 @@ const todosStore = useTodos();
 
 const { todos } = storeToRefs(todosStore);
 
-async function getTodos() {
-  await todosStore.testAction();
+async function saveEntry() {
+  console.log("--- saving new entry ---");
+  console.log("title?", titleValueRef.value);
+}
+
+function updateTitle(newValue: string) {
+  titleValueRef.value = newValue;
 }
 </script>
 
