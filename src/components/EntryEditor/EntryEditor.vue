@@ -62,6 +62,7 @@ const { todos } = storeToRefs(todosStore);
 async function saveEntry() {
   console.log("--- saving new entry ---");
   console.log("title?", titleValueRef.value);
+  todosStore.addTodo(titleValueRef.value);
 }
 
 function updateTitle(newValue: string) {
