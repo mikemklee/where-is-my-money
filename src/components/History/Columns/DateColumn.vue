@@ -2,15 +2,21 @@
   <div class="max-w-md whitespace-normal">{{ formattedDate }}</div>
 </template>
 
-<script setup>
+<script>
 import { format } from 'date-fns';
 
-const props = defineProps({
-  slotProps: { type: Object, required: true, default: {} },
-});
+export default {
+  props: {
+    slotProps: { type: Object, required: true, default: () => {} },
+  },
+  computed: {
+    formattedDate() {
+      const rawDate = this.slotProps.data.date;
 
-const rawDate = props.slotProps.data.date;
-const formattedDate = format(rawDate, 'MMM dd, yyyy');
+      return format(rawDate, 'MMM dd, yyyy');
+    },
+  },
+};
 </script>
 
 <style scoped></style>

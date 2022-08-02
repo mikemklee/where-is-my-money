@@ -11,16 +11,20 @@
   </div>
 </template>
 
-<script setup>
-import { CATEGORIES } from '../../../constants/categories';
-
-const props = defineProps({
-  slotProps: { type: Object, required: true, default: {} },
-});
-
-const { category: categoryKey } = props.slotProps.data;
-
-const { label, color } = CATEGORIES[categoryKey];
+<script>
+export default {
+  props: {
+    slotProps: { type: Object, required: true, default: () => {} },
+  },
+  computed: {
+    label() {
+      return this.slotProps.data.subCategory;
+    },
+    color() {
+      return this.slotProps.data.category.color;
+    },
+  },
+};
 </script>
 
 <style scoped></style>

@@ -1,25 +1,25 @@
 <template>
   <h5>Sub-category</h5>
   <Dropdown
-    v-model="subCategory"
+    :value="subCategory"
     :options="subCategoryOptions"
-    optionLabel="label"
-    optionValue="value"
+    option-label="label"
+    option-value="value"
     placeholder="Select one"
   />
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
-defineProps<{
-  subCategory: string | null;
-}>();
+defineProps({
+  subCategory: String,
+});
 
 const subCategoryOptions = ref([
-  { label: "음식", value: "음식" },
-  { label: "교통", value: "교통" },
-  { label: "여가", value: "여가" },
+  { label: '음식', value: '음식' },
+  { label: '교통', value: '교통' },
+  { label: '여가', value: '여가' },
 ]);
 </script>
 

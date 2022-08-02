@@ -1,10 +1,10 @@
 <template>
   <label for="basic">Date</label>
-  <Calendar id="basic" v-model="date" autocomplete="off" />
+  <Calendar id="basic" :value="date" autocomplete="off" />
 </template>
 
 <script setup>
-defineProps<{ date: Date }>();
+defineProps({ date: Date });
 </script>
 
 <style scoped></style>

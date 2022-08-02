@@ -16,7 +16,7 @@
             <SourceField :source="sourceValueRef" />
           </div>
           <div class="flex flex-col mb-4">
-            <TitleField :title="titleValueRef" @onUpdate="updateTitle" />
+            <TitleField :title="titleValueRef" @on-update="updateTitle" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-4">
@@ -24,7 +24,7 @@
             <CategoryField :category="categoryValueRef" />
           </div>
           <div class="flex flex-col">
-            <SubCategoryField :subCategory="subCategoryValueRef" />
+            <SubCategoryField :sub-category="subCategoryValueRef" />
           </div>
         </div>
       </div>
@@ -42,7 +42,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { storeToRefs } from 'pinia';
 
 import AmountField from './Fields/AmountField.vue';
 import CategoryField from './Fields/CategoryField.vue';
@@ -61,15 +60,13 @@ const subCategoryValueRef = ref(null);
 
 const todosStore = useTodos();
 
-const { todos } = storeToRefs(todosStore);
-
 async function saveEntry() {
   console.log('--- saving new entry ---');
   console.log('title?', titleValueRef.value);
   todosStore.addTodo(titleValueRef.value);
 }
 
-function updateTitle(newValue: string) {
+function updateTitle(newValue) {
   titleValueRef.value = newValue;
 }
 </script>

@@ -6,7 +6,7 @@
 
 <script setup>
 const props = defineProps({
-  slotProps: { type: Object, required: true, default: {} },
+  slotProps: { type: Object, required: true, default: () => {} },
 });
 </script>
 

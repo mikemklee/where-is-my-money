@@ -7,15 +7,25 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  slotProps: { type: Object, required: true, default: {} },
-});
-
-const { net, amount } = props.slotProps.data;
-const isExpense = net < 0;
-const formattedNetAmount = `${isExpense ? '-' : ''}\$${amount}`;
-const netIndicatorClass = isExpense ? 'bg-red-400' : 'bg-green-400';
+<script>
+export default {
+  props: {
+    slotProps: { type: Object, required: true, default: () => {} },
+  },
+  computed: {
+    isExpense() {
+      const { net } = this.slotProps.data;
+      return net < 0;
+    },
+    formattedNetAmount() {
+      const { amount } = this.slotProps.data;
+      return `${this.isExpense ? '-' : ''}$${amount}`;
+    },
+    netIndicatorClass() {
+      return this.isExpense ? 'bg-red-400' : 'bg-green-400';
+    },
+  },
+};
 </script>
 
 <style scoped></style>

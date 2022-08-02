@@ -1,25 +1,25 @@
 <template>
   <h5>Category</h5>
   <Dropdown
-    v-model="category"
+    :value="category"
     :options="categoryOptions"
-    optionLabel="label"
-    optionValue="value"
+    option-label="label"
+    option-value="value"
     placeholder="Select one"
   />
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
-defineProps<{
-  category: string | null;
-}>();
+defineProps({
+  category: String,
+});
 
 const categoryOptions = ref([
-  { label: "변동지출", value: "변동지출" },
-  { label: "비정기지출", value: "비정기지출" },
-  { label: "수입", value: "수입" },
+  { label: '변동지출', value: '변동지출' },
+  { label: '비정기지출', value: '비정기지출' },
+  { label: '수입', value: '수입' },
 ]);
 </script>
 
