@@ -11,8 +11,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { CATEGORIES } from "../../../constants/categories";
+<script setup>
+import { CATEGORIES } from '../../../constants/categories';
 
 const props = defineProps({
   slotProps: { type: Object, required: true, default: {} },

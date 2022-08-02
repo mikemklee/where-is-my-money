@@ -3,7 +3,7 @@
   <Calendar id="basic" v-model="date" autocomplete="off" />
 </template>
 
-<script setup lang="ts">
+<script setup>
 defineProps<{ date: Date }>();
 </script>
 

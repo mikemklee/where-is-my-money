@@ -30,27 +30,31 @@
       </div>
 
       <div class="flex justify-end">
-        <Button label="Save" class="p-button-sm min-w-[6rem]" @click="saveEntry" />
+        <Button
+          label="Save"
+          class="p-button-sm min-w-[6rem]"
+          @click="saveEntry"
+        />
       </div>
     </template>
   </Card>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
+<script setup>
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 
-import AmountField from "./Fields/AmountField.vue";
-import CategoryField from "./Fields/CategoryField.vue";
-import DateField from "./Fields/DateField.vue";
-import SourceField from "./Fields/SourceField.vue";
-import SubCategoryField from "./Fields/SubCategoryField.vue";
-import TitleField from "./Fields/TitleField.vue";
-import { useTodos } from "../../store";
+import AmountField from './Fields/AmountField.vue';
+import CategoryField from './Fields/CategoryField.vue';
+import DateField from './Fields/DateField.vue';
+import SourceField from './Fields/SourceField.vue';
+import SubCategoryField from './Fields/SubCategoryField.vue';
+import TitleField from './Fields/TitleField.vue';
+import { useTodos } from '../../store';
 
 const dateValRef = ref(new Date());
-const sourceValueRef = ref("");
-const titleValueRef = ref("");
+const sourceValueRef = ref('');
+const titleValueRef = ref('');
 const amountValueRef = ref(0);
 const categoryValueRef = ref(null);
 const subCategoryValueRef = ref(null);
@@ -60,8 +64,8 @@ const todosStore = useTodos();
 const { todos } = storeToRefs(todosStore);
 
 async function saveEntry() {
-  console.log("--- saving new entry ---");
-  console.log("title?", titleValueRef.value);
+  console.log('--- saving new entry ---');
+  console.log('title?', titleValueRef.value);
   todosStore.addTodo(titleValueRef.value);
 }
 

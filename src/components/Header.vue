@@ -17,9 +17,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
-import { startOfMonth, endOfMonth } from "date-fns";
+<script setup>
+import { ref } from 'vue';
+import { startOfMonth, endOfMonth } from 'date-fns';
 
 const today = new Date();
 const firstDayOfMonth = startOfMonth(today);

@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import App from './App.vue'
+import App from './App.vue';
 
 // PrimeVue imports
 import PrimeVue from 'primevue/config';
@@ -10,29 +10,28 @@ import Button from 'primevue/button';
 import Card from 'primevue/card';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
-import Row from 'primevue/row';                     //optional for row
-import InputNumber from 'primevue/inputnumber';                   
+import ColumnGroup from 'primevue/columngroup'; //optional for column grouping
+import Row from 'primevue/row'; //optional for row
+import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
 import SelectButton from 'primevue/selectbutton';
 import Calendar from 'primevue/calendar';
 import Dropdown from 'primevue/dropdown';
 
-
-import './style.css'
+import './style.css';
 import 'primevue/resources/themes/tailwind-light/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import './primevue-theme-override.css'
+import './primevue-theme-override.css';
 
-const pinia = createPinia()
+const pinia = createPinia();
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(pinia)
+app.use(pinia);
 
 // PrimeVue configs
-app.use(PrimeVue)
+app.use(PrimeVue);
 app.component('Dialog', Dialog);
 app.component('Button', Button);
 app.component('Card', Card);
@@ -46,4 +45,4 @@ app.component('SelectButton', SelectButton);
 app.component('Calendar', Calendar);
 app.component('Dropdown', Dropdown);
 
-app.mount('#app')
+app.mount('#app');

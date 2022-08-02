@@ -9,7 +9,7 @@
   />
 </template>
 
-<script setup lang="ts">
+<script setup>
 defineProps<{
   source: string;
 }>();
