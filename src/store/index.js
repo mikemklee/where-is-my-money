@@ -1,5 +1,3 @@
-import { useTodos } from './store'
+import { useHistoryStore } from './store';
 
-export {
-    useTodos,
-}
+export { useHistoryStore };

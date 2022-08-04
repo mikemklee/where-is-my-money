@@ -1,36 +1,24 @@
 import { defineStore } from 'pinia';
 
-const initialTodos = [];
+const initialHistory = [];
 
-export const useTodos = defineStore('todos', {
+export const useHistoryStore = defineStore('history', {
   state: () => ({
-    todos: initialTodos,
-    filter: 0,
-    nextId: 0,
+    history: initialHistory,
   }),
-  getters: {
-    finishedTodos(state) {
-      // autocompletion! ✨
-      return state.todos.filter((todo) => todo.isFinished);
-    },
-    unfinishedTodos(state) {
-      return state.todos.filter((todo) => !todo.isFinished);
-    },
-    /**
-     * @returns {{ text: string, id: number, isFinished: boolean }[]}
-     */
-    filteredTodos() {
-      if (this.filter === 1) {
-        // call other getters with autocompletion ✨
-        return this.finishedTodos;
-      } else if (this.filter === 0) {
-        return this.unfinishedTodos;
-      }
-      return this.todos;
-    },
-  },
   actions: {
-    async addTodo(title) {
+    async getHistory() {
+      const response = await fetch('http://localhost:8000/items/');
+      const data = await response.json();
+
+      const formattedHistory = data.map((item) => ({
+        ...item,
+        date: new Date(item.epoch_date),
+      }));
+
+      this.history = formattedHistory;
+    },
+    async saveEntry(title) {
       const response = await fetch(`http://localhost:8000/users/${0}/items`, {
         method: 'POST',
         headers: {
@@ -47,7 +35,7 @@ export const useTodos = defineStore('todos', {
         }),
       });
       const data = await response.json();
-      this.todos.push(data);
+      this.history.push(data);
     },
   },
 });

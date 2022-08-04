@@ -49,7 +49,7 @@ import DateField from './Fields/DateField.vue';
 import SourceField from './Fields/SourceField.vue';
 import SubCategoryField from './Fields/SubCategoryField.vue';
 import TitleField from './Fields/TitleField.vue';
-import { useTodos } from '../../store';
+import { useHistoryStore } from '../../store';
 
 const dateValRef = ref(new Date());
 const sourceValueRef = ref('');
@@ -58,12 +58,12 @@ const amountValueRef = ref(0);
 const categoryValueRef = ref(null);
 const subCategoryValueRef = ref(null);
 
-const todosStore = useTodos();
+const historyStore = useHistoryStore();
 
 async function saveEntry() {
   console.log('--- saving new entry ---');
   console.log('title?', titleValueRef.value);
-  todosStore.addTodo(titleValueRef.value);
+  historyStore.saveEntry(titleValueRef.value);
 }
 
 function updateTitle(newValue) {
