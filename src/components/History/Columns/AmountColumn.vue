@@ -18,8 +18,9 @@ export default {
       return net < 0;
     },
     formattedNetAmount() {
-      const { amount } = this.slotProps.data;
-      return `${this.isExpense ? '-' : ''}$${amount}`;
+      const { amount: amountInCents } = this.slotProps.data;
+      const dollarAmount = amountInCents / 100;
+      return `${this.isExpense ? '-' : ''}$${dollarAmount}`;
     },
     netIndicatorClass() {
       return this.isExpense ? 'bg-red-400' : 'bg-green-400';

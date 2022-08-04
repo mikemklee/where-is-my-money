@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-md whitespace-normal">
-    {{ slotProps.data.subCategory }}
+    {{ slotProps.data.sub_category }}
   </div>
 </template>
 

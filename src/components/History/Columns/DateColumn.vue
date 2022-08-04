@@ -12,7 +12,6 @@ export default {
   computed: {
     formattedDate() {
       const rawDate = this.slotProps.data.date;
-
       return format(rawDate, 'MMM dd, yyyy');
     },
   },

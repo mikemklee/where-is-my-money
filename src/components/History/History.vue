@@ -5,7 +5,7 @@
     </template>
     <template #content>
       <DataTable
-        :value="items"
+        :value="historyStore.history"
         showGridlines
         resizableColumns
         columnResizeMode="fit"
@@ -47,51 +47,39 @@
   </Card>
 </template>
 
-<script setup>
+<script>
 import DateColumn from './Columns/DateColumn.vue';
 import SourceColumn from './Columns/SourceColumn.vue';
 import TitleColumn from './Columns/TitleColumn.vue';
 import AmountColumn from './Columns/AmountColumn.vue';
 import CategoryColumn from './Columns/CategoryColumn.vue';
 import SubCategoryColumn from './Columns/SubCategoryColumn.vue';
-const items = [
-  {
-    date: 1658588456123,
-    source: 'Longos',
-    title: '닭 허벅지살 + 요거트 + 시리얼',
-    net: -1,
-    amount: 18.29,
-    category: 'variable_expense',
-    subCategory: '음식',
+
+import { useHistoryStore } from '../../store';
+
+export default {
+  components: {
+    DateColumn,
+    SourceColumn,
+    TitleColumn,
+    AmountColumn,
+    CategoryColumn,
+    SubCategoryColumn,
   },
-  {
-    date: 1658588456123,
-    source: 'Kijiji',
-    title: 'Nikon DSLR 카메라 판매',
-    net: 1,
-    amount: 240,
-    category: 'variable_income',
-    subCategory: '중고거래',
+  setup() {
+    const historyStore = useHistoryStore();
+
+    return { historyStore };
   },
-  {
-    date: 1658588456123,
-    source: 'Uber',
-    title: '핀치 - 집 택시비',
-    net: -1,
-    amount: 16.79,
-    category: 'variable_expense',
-    subCategory: '교통',
+  mounted() {
+    this.getHistory();
   },
-  {
-    date: 1658588456123,
-    source: 'E-Transfer',
-    title: '동기모임 카티지여행 정산',
-    net: -1,
-    amount: 124.0,
-    category: 'other_expense',
-    subCategory: '여가',
+  methods: {
+    getHistory() {
+      this.historyStore.getHistory();
+    },
   },
-];
+};
 </script>
 
 <style scoped></style>

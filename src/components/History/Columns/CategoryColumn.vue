@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     label() {
-      return this.slotProps.data.subCategory;
+      return this.slotProps.data.category;
     },
     color() {
       return this.slotProps.data.category.color;
