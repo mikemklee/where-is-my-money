@@ -1,0 +1,38 @@
+export const dummyItems = [
+  {
+    date: 1658588456123,
+    source: 'Longos',
+    title: '닭 허벅지살 + 요거트 + 시리얼',
+    net: -1,
+    amount: 18.29,
+    category: 'variable_expense',
+    subCategory: '음식',
+  },
+  {
+    date: 1658588456123,
+    source: 'Kijiji',
+    title: 'Nikon DSLR 카메라 판매',
+    net: 1,
+    amount: 240,
+    category: 'variable_income',
+    subCategory: '중고거래',
+  },
+  {
+    date: 1658588456123,
+    source: 'Uber',
+    title: '핀치 - 집 택시비',
+    net: -1,
+    amount: 16.79,
+    category: 'variable_expense',
+    subCategory: '교통',
+  },
+  {
+    date: 1658588456123,
+    source: 'E-Transfer',
+    title: '동기모임 카티지여행 정산',
+    net: -1,
+    amount: 124.0,
+    category: 'other_expense',
+    subCategory: '여가',
+  },
+];
