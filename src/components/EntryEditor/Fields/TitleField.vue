@@ -2,7 +2,7 @@
   <h5>Title</h5>
   <InputText
     id="title"
-    :value="title"
+    :modelValue="title"
     type="text"
     class="w-full"
     placeholder="e.g. trip from Downtown to the home"
@@ -15,10 +15,10 @@ const props = defineProps({
   title: String,
 });
 
-const emit = defineEmits(['onUpdate']);
+const emit = defineEmits(['on-update']);
 
 function onUpdate(newValue) {
-  emit('onUpdate', newValue);
+  emit('on-update', newValue);
 }
 </script>
 
