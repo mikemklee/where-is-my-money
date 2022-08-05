@@ -5,26 +5,32 @@
       <div class="flex flex-col">
         <div class="grid grid-cols-2 gap-2 mb-4">
           <div class="flex flex-col">
-            <DateField :date="dateValRef" />
+            <DateField :date="dateValue" @on-update="updateDate" />
           </div>
           <div class="flex flex-col">
-            <AmountField :amount="amountValueRef" />
+            <AmountField :amount="amountValue" @on-update="updateAmount" />
           </div>
         </div>
         <div class="flex flex-col">
           <div class="flex flex-col mb-4">
-            <SourceField :source="sourceValueRef" />
+            <SourceField :source="sourceValue" @on-update="updateSource" />
           </div>
           <div class="flex flex-col mb-4">
-            <TitleField :title="titleValueRef" @on-update="updateTitle" />
+            <TitleField :title="titleValue" @on-update="updateTitle" />
           </div>
         </div>
         <div class="grid grid-cols-2 gap-2 mb-4">
           <div class="flex flex-col">
-            <CategoryField :category="categoryValueRef" />
+            <CategoryField
+              :category="categoryValue"
+              @on-update="updateCategory"
+            />
           </div>
           <div class="flex flex-col">
-            <SubCategoryField :sub-category="subCategoryValueRef" />
+            <SubCategoryField
+              :sub-category="subCategoryValue"
+              @on-update="updateSubCategory"
+            />
           </div>
         </div>
       </div>
@@ -40,9 +46,7 @@
   </Card>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-
+<script>
 import AmountField from './Fields/AmountField.vue';
 import CategoryField from './Fields/CategoryField.vue';
 import DateField from './Fields/DateField.vue';
@@ -51,24 +55,62 @@ import SubCategoryField from './Fields/SubCategoryField.vue';
 import TitleField from './Fields/TitleField.vue';
 import { useHistoryStore } from '../../store';
 
-const dateValRef = ref(new Date());
-const sourceValueRef = ref('');
-const titleValueRef = ref('');
-const amountValueRef = ref(0);
-const categoryValueRef = ref(null);
-const subCategoryValueRef = ref(null);
-
-const historyStore = useHistoryStore();
-
-async function saveEntry() {
-  console.log('--- saving new entry ---');
-  console.log('title?', titleValueRef.value);
-  historyStore.saveEntry(titleValueRef.value);
-}
-
-function updateTitle(newValue) {
-  titleValueRef.value = newValue;
-}
+export default {
+  components: {
+    AmountField,
+    CategoryField,
+    DateField,
+    SourceField,
+    SubCategoryField,
+    TitleField,
+  },
+  setup() {
+    const historyStore = useHistoryStore();
+    return {
+      historyStore,
+    };
+  },
+  data() {
+    return {
+      dateValue: new Date(),
+      amountValue: 0,
+      sourceValue: '',
+      titleValue: '',
+      categoryValue: '',
+      subCategoryValue: '',
+    };
+  },
+  methods: {
+    updateDate(newValue) {
+      this.dateValue = newValue;
+    },
+    updateAmount(newValue) {
+      this.amountValue = newValue;
+    },
+    updateSource(newValue) {
+      this.sourceValue = newValue;
+    },
+    updateTitle(newValue) {
+      this.titleValue = newValue;
+    },
+    updateCategory(newValue) {
+      this.categoryValue = newValue;
+    },
+    updateSubCategory(newValue) {
+      this.subCategoryValue = newValue;
+    },
+    saveEntry() {
+      this.historyStore.saveEntry({
+        date: this.dateValue,
+        amount: this.amountValue,
+        source: this.sourceValue,
+        title: this.titleValue,
+        category: this.categoryValue,
+        subCategory: this.subCategoryValue,
+      });
+    },
+  },
+};
 </script>
 
 <style scoped></style>
