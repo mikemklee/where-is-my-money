@@ -1,11 +1,12 @@
 <template>
   <h5>Sub-category</h5>
   <Dropdown
-    :value="subCategory"
+    :modelValue="subCategory"
     :options="subCategoryOptions"
     option-label="label"
     option-value="value"
     placeholder="Select one"
+    @update:modelValue="onUpdate"
   />
 </template>
 
@@ -21,6 +22,12 @@ const subCategoryOptions = ref([
   { label: '교통', value: '교통' },
   { label: '여가', value: '여가' },
 ]);
+
+const emit = defineEmits(['on-update']);
+
+function onUpdate(newValue) {
+  emit('on-update', newValue);
+}
 </script>
 
 <style scoped></style>
