@@ -2,7 +2,7 @@
   <form class="form-widget" @submit.prevent="updateProfile">
     <div>
       <label for="email">Email</label>
-      <input id="email" type="text" :value="store.user.email" disabled />
+      <input id="email" type="text" :value="userStore.user.email" disabled />
     </div>
     <div>
       <label for="username">Name</label>
@@ -32,7 +32,7 @@
 
 <script>
 import { supabase } from '../supabase';
-import { store } from '../store';
+import { useUserStore } from '../store';
 import { onMounted, ref } from 'vue';
 
 export default {
@@ -42,15 +42,17 @@ export default {
     const website = ref('');
     const avatar_url = ref('');
 
+    const userStore = useUserStore();
+
     async function getProfile() {
       try {
         loading.value = true;
-        store.user = supabase.auth.user();
+        userStore.user = supabase.auth.user();
 
         let { data, error, status } = await supabase
           .from('profiles')
           .select(`username, website, avatar_url`)
-          .eq('id', store.user.id)
+          .eq('id', userStore.user.id)
           .single();
 
         if (error && status !== 406) throw error;
@@ -70,10 +72,10 @@ export default {
     async function updateProfile() {
       try {
         loading.value = true;
-        store.user = supabase.auth.user();
+        userStore.user = supabase.auth.user();
 
         const updates = {
-          id: store.user.id,
+          id: userStore.user.id,
           username: username.value,
           website: website.value,
           avatar_url: avatar_url.value,
@@ -109,7 +111,7 @@ export default {
     });
 
     return {
-      store,
+      userStore,
       loading,
       username,
       website,
