@@ -9,15 +9,13 @@ export const useHistoryStore = defineStore('history', {
   }),
   actions: {
     async getHistory() {
-      const response = await fetch('http://localhost:8000/items/');
-      const data = await response.json();
-
-      const formattedHistory = data.map((item) => ({
-        ...item,
-        date: new Date(item.epoch_date),
-      }));
-
-      this.history = formattedHistory;
+      // const response = await fetch('http://localhost:8000/items/');
+      // const data = await response.json();
+      // const formattedHistory = data.map((item) => ({
+      //   ...item,
+      //   date: new Date(item.epoch_date),
+      // }));
+      // this.history = formattedHistory;
     },
     async saveEntry(entry) {
       const { date, amount, source, title, category, subCategory } = entry;
