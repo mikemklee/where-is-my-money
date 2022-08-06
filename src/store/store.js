@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 
 const initialHistory = [];
+const initialUser = {};
 
 export const useHistoryStore = defineStore('history', {
   state: () => ({
@@ -44,4 +45,10 @@ export const useHistoryStore = defineStore('history', {
       });
     },
   },
+});
+
+export const useUserStore = defineStore('user', {
+  state: () => ({
+    user: initialUser,
+  }),
 });
