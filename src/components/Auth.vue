@@ -1,23 +1,23 @@
 <template>
-  <form class="row flex flex-center" @submit.prevent="handleLogin">
-    <div class="col-6 form-widget">
-      <h1 class="header">Supabase + Vue 3</h1>
-      <p class="description">Sign in via magic link with your email below</p>
-      <div>
-        <input
-          v-model="email"
-          class="inputField"
-          type="email"
-          placeholder="Your email"
-        />
-      </div>
-      <div>
-        <input
-          type="submit"
-          class="button block"
-          :value="loading ? 'Loading' : 'Send magic link'"
-          :disabled="loading"
-        />
+  <form class="mt-4" @submit.prevent="handleLogin">
+    <div>
+      <p class="my-2">Sign in via magic link with your email below</p>
+      <div class="flex flex-col">
+        <div>
+          <InputText
+            v-model="email"
+            type="email"
+            placeholder="Your email"
+            class="w-full"
+          />
+        </div>
+        <div class="mt-2">
+          <Button
+            class="w-full"
+            :label="loading ? 'Loading' : 'Send magic link'"
+            :disabled="loading"
+          />
+        </div>
       </div>
     </div>
   </form>
