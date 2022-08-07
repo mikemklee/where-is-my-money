@@ -1,5 +1,4 @@
 <template>
-  <Toast position="top-center" />
   <div v-if="!loading" class="flex">
     <div class="flex flex-col mr-2">
       <span>Logged in as:</span>

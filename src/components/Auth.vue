@@ -1,7 +1,5 @@
 <template>
-  <div class="mt-4">
-    <Toast position="top-center" />
-
+  <form class="mt-4" @submit.prevent="handleLogin">
     <div>
       <p class="my-2">Sign in via magic link with your email below</p>
       <div class="flex flex-col">
@@ -18,12 +16,11 @@
             class="w-full"
             :label="loading ? 'Loading' : 'Send magic link'"
             :disabled="loading"
-            @click="handleLogin"
           />
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>

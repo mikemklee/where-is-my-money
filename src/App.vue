@@ -33,6 +33,8 @@ export default {
 </script>
 
 <template>
+  <Toast position="top-center" />
+
   <div
     v-if="!userStore.user"
     class="w-fit h-full mx-auto flex flex-col justify-center items-center"
