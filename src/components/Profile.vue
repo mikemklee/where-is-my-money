@@ -1,33 +1,18 @@
 <template>
-  <form class="form-widget" @submit.prevent="updateProfile">
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="text" :value="userStore.user.email" disabled />
+  <div v-if="!loading" class="flex">
+    <div class="flex flex-col mr-2">
+      <span>Logged in as:</span>
+      <span>{{ userStore.user.email }}</span>
     </div>
     <div>
-      <label for="username">Name</label>
-      <input id="username" v-model="username" type="text" />
-    </div>
-    <div>
-      <label for="website">Website</label>
-      <input id="website" v-model="website" type="website" />
-    </div>
-
-    <div>
-      <input
-        type="submit"
-        class="button block primary"
-        :value="loading ? 'Loading ...' : 'Update'"
+      <Button
+        class="p-button-sm min-w-[6rem]"
+        label="Sign out"
         :disabled="loading"
+        @click="signOut"
       />
     </div>
-
-    <div>
-      <button class="button block" :disabled="loading" @click="signOut">
-        Sign Out
-      </button>
-    </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -39,7 +24,6 @@ export default {
   setup() {
     const loading = ref(true);
     const username = ref('');
-    const website = ref('');
     const avatar_url = ref('');
 
     const userStore = useUserStore();
@@ -59,7 +43,6 @@ export default {
 
         if (data) {
           username.value = data.username;
-          website.value = data.website;
           avatar_url.value = data.avatar_url;
         }
       } catch (error) {
@@ -82,7 +65,6 @@ export default {
           const updates = {
             id: userStore.user.id,
             username: username.value,
-            website: website.value,
             avatar_url: avatar_url.value,
             updated_at: new Date(),
           };
@@ -109,6 +91,7 @@ export default {
         console.error(error);
       } finally {
         loading.value = false;
+        userStore.user = null;
       }
     }
 
@@ -120,7 +103,6 @@ export default {
       userStore,
       loading,
       username,
-      website,
       avatar_url,
 
       updateProfile,

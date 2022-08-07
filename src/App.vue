@@ -5,14 +5,12 @@ import EntryEditor from './components/EntryEditor/EntryEditor.vue';
 import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
 import History from './components/History/History.vue';
-import Profile from './components/Profile.vue';
 import { useUserStore } from './store';
 import { supabase } from './supabase';
 
 export default {
   components: {
     Auth,
-    Profile,
     EntryEditor,
     Header,
     Footer,
@@ -48,9 +46,6 @@ export default {
 
   <div v-else class="p-24 flex flex-col w-full h-full">
     <Header />
-    <div>
-      <Profile />
-    </div>
     <div class="flex">
       <History />
       <EntryEditor />
