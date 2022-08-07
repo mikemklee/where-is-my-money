@@ -1,25 +1,28 @@
 <template>
   <div class="flex">
-    <div class="grow mb-8 ml-2">
-      <h1 class="italic text-5xl">WIMM</h1>
-      <h1 class="italic font-light text-xl">Where is my money?</h1>
-    </div>
-    <div class="flex flex-col w-56">
-      <label for="range">Data between:</label>
-      <Calendar
-        id="range"
-        v-model="rangeValRef"
-        autocomplete="off"
-        selectionMode="range"
-        :manualInput="false"
-      />
+    <AppLogo />
+    <div class="ml-auto flex flex-col">
+      <Profile />
+      <div class="my-4 flex justify-end items-center">
+        <label class="mr-2" for="range">Data between:</label>
+        <Calendar
+          id="range"
+          v-model="rangeValRef"
+          class="w-[13rem]"
+          autocomplete="off"
+          selectionMode="range"
+          :manualInput="false"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { endOfMonth, startOfMonth } from 'date-fns';
 import { ref } from 'vue';
-import { startOfMonth, endOfMonth } from 'date-fns';
+import AppLogo from './AppLogo.vue';
+import Profile from './Profile.vue';
 
 const today = new Date();
 const firstDayOfMonth = startOfMonth(today);

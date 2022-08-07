@@ -1,3 +1,3 @@
-import { useHistoryStore } from './store';
+import { useHistoryStore, useUserStore } from './store';
 
-export { useHistoryStore };
+export { useHistoryStore, useUserStore };

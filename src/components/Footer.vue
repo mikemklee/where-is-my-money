@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-auto flex justify-end">
+  <div class="flex justify-end">
     <span>
       Made with ☕ by
       <a href="https://github.com/leemun1/where-is-my-money-app" target="_blank"
