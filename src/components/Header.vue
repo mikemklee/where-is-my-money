@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <AppLogo />
-    <div class="flex flex-col w-56">
+    <div class="ml-auto flex flex-col w-56">
       <label for="range">Data between:</label>
       <Calendar
         id="range"
