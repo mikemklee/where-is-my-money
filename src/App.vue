@@ -1,12 +1,13 @@
 <script>
-import EntryEditor from './components/EntryEditor/EntryEditor.vue';
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import History from './components/History/History.vue';
-import { supabase } from './supabase';
+import AppLogo from './components/AppLogo.vue';
 import Auth from './components/Auth.vue';
+import EntryEditor from './components/EntryEditor/EntryEditor.vue';
+import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
+import History from './components/History/History.vue';
 import Profile from './components/Profile.vue';
 import { useUserStore } from './store';
+import { supabase } from './supabase';
 
 export default {
   components: {
@@ -16,6 +17,7 @@ export default {
     Header,
     Footer,
     History,
+    AppLogo,
   },
 
   setup() {
@@ -33,17 +35,29 @@ export default {
 </script>
 
 <template>
-  <div class="p-24 flex flex-col w-full h-full">
+  <div
+    v-if="!userStore.user"
+    class="w-fit h-full mx-auto flex flex-col justify-center items-center"
+  >
+    <AppLogo />
+    <Auth />
+    <div class="mt-8">
+      <Footer />
+    </div>
+  </div>
+
+  <div v-else class="p-24 flex flex-col w-full h-full">
     <Header />
-    <div class="container" style="padding: 50px 0 100px 0">
-      <Profile v-if="userStore.user" />
-      <Auth v-else />
+    <div>
+      <Profile />
     </div>
     <div class="flex">
       <History />
       <EntryEditor />
     </div>
-    <Footer />
+    <div class="mt-auto">
+      <Footer />
+    </div>
   </div>
 </template>
 
