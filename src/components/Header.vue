@@ -1,9 +1,6 @@
 <template>
   <div class="flex">
-    <div class="grow mb-8 ml-2">
-      <h1 class="italic text-5xl">WIMM</h1>
-      <h1 class="italic font-light text-xl">Where is my money?</h1>
-    </div>
+    <AppLogo />
     <div class="flex flex-col w-56">
       <label for="range">Data between:</label>
       <Calendar
@@ -20,6 +17,7 @@
 <script setup>
 import { ref } from 'vue';
 import { startOfMonth, endOfMonth } from 'date-fns';
+import AppLogo from './AppLogo.vue';
 
 const today = new Date();
 const firstDayOfMonth = startOfMonth(today);
