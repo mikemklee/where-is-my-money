@@ -63,6 +63,7 @@ export default {
           avatar_url.value = data.avatar_url;
         }
       } catch (error) {
+        console.log('Get profile error?', error);
         alert(error.message);
       } finally {
         loading.value = false;
@@ -73,22 +74,27 @@ export default {
       try {
         loading.value = true;
         userStore.user = supabase.auth.user();
+        const response = await supabase.auth.user();
 
-        const updates = {
-          id: userStore.user.id,
-          username: username.value,
-          website: website.value,
-          avatar_url: avatar_url.value,
-          updated_at: new Date(),
-        };
+        if (response) {
+          userStore.user = response;
 
-        let { error } = await supabase.from('profiles').upsert(updates, {
-          returning: 'minimal', // Don't return the value after inserting
-        });
+          const updates = {
+            id: userStore.user.id,
+            username: username.value,
+            website: website.value,
+            avatar_url: avatar_url.value,
+            updated_at: new Date(),
+          };
 
-        if (error) throw error;
+          let { error } = await supabase.from('profiles').upsert(updates, {
+            returning: 'minimal', // Don't return the value after inserting
+          });
+
+          if (error) throw error;
+        }
       } catch (error) {
-        alert(error.message);
+        console.error(error);
       } finally {
         loading.value = false;
       }
@@ -100,7 +106,7 @@ export default {
         let { error } = await supabase.auth.signOut();
         if (error) throw error;
       } catch (error) {
-        alert(error.message);
+        console.error(error);
       } finally {
         loading.value = false;
       }
