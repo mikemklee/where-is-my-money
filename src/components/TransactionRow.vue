@@ -3,7 +3,9 @@
     <td>{{ transactionDate }}</td>
     <td>{{ transactionSource }}</td>
     <td>{{ transaction.description }}</td>
-    <td>{{ transactionAmount }}</td>
+    <td :class="transactionAmountRaw < 0 ? 'text-red-700' : 'text-green-700'">
+      {{ transactionAmountFormatted }}
+    </td>
     <td>{{ transactionCategory }}</td>
     <td>{{ transactionAccount }}</td>
   </tr>
@@ -32,7 +34,8 @@ export default {
       "MM/dd/yyyy"
     );
 
-    const transactionAmount = (props.transaction.amount / 100).toLocaleString(
+    const transactionAmountRaw = props.transaction.amount / 100;
+    const transactionAmountFormatted = transactionAmountRaw.toLocaleString(
       "en-US",
       { style: "currency", currency: "USD" }
     );
@@ -44,12 +47,11 @@ export default {
     return {
       transactionDate,
       transactionSource,
-      transactionAmount,
+      transactionAmountRaw,
+      transactionAmountFormatted,
       transactionCategory,
       transactionAccount,
     };
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -27,15 +27,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Source</th>
-        <th>Description</th>
-        <th>Amount</th>
-        <th>Category</th>
-        <th>Account</th>
+  <table class="w-full border-collapse">
+    <thead class="">
+      <tr class="text-left border-b border-stone-400">
+        <th class="font-bold">Date</th>
+        <th class="font-bold">Source</th>
+        <th class="font-bold">Description</th>
+        <th class="font-bold">Amount</th>
+        <th class="font-bold">Category</th>
+        <th class="font-bold">Account</th>
       </tr>
     </thead>
     <tbody>
@@ -47,5 +47,3 @@ onMounted(() => {
     </tbody>
   </table>
 </template>
-
-<style lang="scss" scoped></style>
