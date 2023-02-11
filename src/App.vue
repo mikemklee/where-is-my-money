@@ -4,6 +4,10 @@ import { ref, onMounted } from "vue";
 import { supabase } from "./lib/supabaseClient";
 import TransactionRow from "./components/TransactionRow.vue";
 
+import { useCategoriesStore } from "@/stores/categories";
+
+const { getCategories } = useCategoriesStore();
+
 const transactions = ref([]);
 
 async function getTransactions() {
@@ -12,7 +16,9 @@ async function getTransactions() {
 }
 
 onMounted(() => {
-  getTransactions();
+  Promise.all([getCategories()]).then(() => {
+    getTransactions();
+  });
 });
 </script>
 
