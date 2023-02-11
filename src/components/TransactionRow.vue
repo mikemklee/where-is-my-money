@@ -1,13 +1,16 @@
 <template>
-  <tr>
-    <td>{{ transactionDate }}</td>
-    <td>{{ transactionSource }}</td>
-    <td>{{ transaction.description }}</td>
-    <td :class="transactionAmountRaw < 0 ? 'text-red-700' : 'text-green-700'">
+  <tr class="border-b border-stone-200">
+    <TableDataCell>{{ transactionDate }}</TableDataCell>
+    <TableDataCell>{{ transactionSource }}</TableDataCell>
+    <TableDataCell>{{ transaction.description }}</TableDataCell>
+    <TableDataCell>{{ transactionCategory }}</TableDataCell>
+    <TableDataCell>{{ transactionAccount }}</TableDataCell>
+    <TableDataCell
+      :class="transactionAmountRaw < 0 ? 'text-red-700' : 'text-green-700'"
+      class="text-right"
+    >
       {{ transactionAmountFormatted }}
-    </td>
-    <td>{{ transactionCategory }}</td>
-    <td>{{ transactionAccount }}</td>
+    </TableDataCell>
   </tr>
 </template>
 
@@ -17,12 +20,17 @@ import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
 
+import TableDataCell from "@/components/TableDataCell.vue";
+
 export default {
   props: {
     transaction: {
       type: Object,
       required: true,
     },
+  },
+  components: {
+    TableDataCell,
   },
   setup(props) {
     const { categories } = useCategoriesStore();

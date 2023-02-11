@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 
 import { supabase } from "@/lib/supabaseClient";
 import TransactionRow from "@/components/TransactionRow.vue";
+import TableHeaderCell from "@/components/TableHeaderCell.vue";
 
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
@@ -30,12 +31,12 @@ onMounted(() => {
   <table class="w-full border-collapse">
     <thead class="">
       <tr class="text-left border-b border-stone-400">
-        <th class="font-bold">Date</th>
-        <th class="font-bold">Source</th>
-        <th class="font-bold">Description</th>
-        <th class="font-bold">Amount</th>
-        <th class="font-bold">Category</th>
-        <th class="font-bold">Account</th>
+        <TableHeaderCell>Date</TableHeaderCell>
+        <TableHeaderCell>Source</TableHeaderCell>
+        <TableHeaderCell>Description</TableHeaderCell>
+        <TableHeaderCell>Category</TableHeaderCell>
+        <TableHeaderCell>Account</TableHeaderCell>
+        <TableHeaderCell class="text-right">Amount</TableHeaderCell>
       </tr>
     </thead>
     <tbody>
