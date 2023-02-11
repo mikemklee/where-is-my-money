@@ -1,6 +1,20 @@
-<script setup lang="ts">
+<script setup>
+import { ref, onMounted } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+
+import { supabase } from "./lib/supabaseClient";
+
+const transactions = ref([]);
+
+async function getTransactions() {
+  const { data } = await supabase.from("transactions").select();
+  transactions.value = data;
+}
+
+onMounted(() => {
+  getTransactions();
+});
 </script>
 
 <template>
@@ -22,6 +36,12 @@ import HelloWorld from "./components/HelloWorld.vue";
       </nav>
     </div>
   </header>
+
+  <ul>
+    <li v-for="transaction in transactions" :key="transaction.id">
+      {{ transaction.description }}
+    </li>
+  </ul>
 
   <RouterView />
 </template>
