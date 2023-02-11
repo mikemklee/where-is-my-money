@@ -39,7 +39,7 @@ export default {
 
     const transactionDate = format(
       new Date(props.transaction.created_at),
-      "MM/dd/yyyy"
+      "yyyy/MM/dd"
     );
 
     const transactionAmountRaw = props.transaction.amount / 100;
