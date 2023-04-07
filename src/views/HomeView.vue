@@ -1,10 +1,22 @@
 <script setup>
-import TransactionTable from "@/components/TransactionTable.vue";
+import { ref } from "vue";
 import EyesIcon from "@/components/icons/EyesIcon.vue";
+import TransactionTable from "@/components/TransactionTable.vue";
+import TransactionEditor from "@/components/TransactionEditor.vue";
 
 async function addTransaction() {
-  console.log("add transaction");
+  openEditor();
 }
+
+function openEditor() {
+  shouldShowEditor.value = true;
+}
+
+function closeEditor() {
+  shouldShowEditor.value = false;
+}
+
+const shouldShowEditor = ref(false);
 </script>
 
 <template>
@@ -26,4 +38,5 @@ async function addTransaction() {
       </button>
     </div>
   </div>
+  <TransactionEditor v-if="shouldShowEditor" @close="closeEditor" />
 </template>
