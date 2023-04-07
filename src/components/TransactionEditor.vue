@@ -8,12 +8,36 @@
       class="border border-stone-200 max-w-2xl mx-auto max-h-2xl my-auto flex flex-col bg-[#fffbfe] rounded p-8"
     >
       <div class="flex flex-col gap-y-2">
-        <TextInput label="Date" :value="form.date" />
-        <TextInput label="Source" :value="form.source" />
-        <TextInput label="Description" :value="form.description" />
-        <TextInput label="Category" :value="form.category" />
-        <TextInput label="Account" :value="form.account" />
-        <TextInput label="Amount" :value="form.amount" />
+        <TextInput
+          label="Date"
+          :value="form.date"
+          @update="handleFormUpdate('date', $event)"
+        />
+        <TextInput
+          label="Source"
+          :value="form.source"
+          @update="handleFormUpdate('source', $event)"
+        />
+        <TextInput
+          label="Description"
+          :value="form.description"
+          @update="handleFormUpdate('description', $event)"
+        />
+        <TextInput
+          label="Category"
+          :value="form.category"
+          @update="handleFormUpdate('category', $event)"
+        />
+        <TextInput
+          label="Account"
+          :value="form.account"
+          @update="handleFormUpdate('account', $event)"
+        />
+        <TextInput
+          label="Amount"
+          :value="form.amount"
+          @update="handleFormUpdate('amount', $event)"
+        />
       </div>
 
       <div class="flex justify-between mt-4">
@@ -53,8 +77,16 @@ export default {
       handleClose();
     };
 
+    const handleFormUpdate = (
+      field: keyof typeof form.value,
+      value: string
+    ) => {
+      form.value[field] = value;
+    };
+
     return {
       form,
+      handleFormUpdate,
       handleClose,
       handleSave,
     };

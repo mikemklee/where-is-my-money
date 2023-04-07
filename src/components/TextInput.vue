@@ -18,6 +18,7 @@ import { computed } from "vue";
 
 export default {
   name: "TextInput",
+  emits: ["update"],
   props: {
     label: {
       type: String,
@@ -37,17 +38,15 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const inputValue = computed(() => props.value);
     const inputId = computed(() => props.label.toLowerCase());
 
     function handleInput(event: Event) {
       const target = event.target as HTMLInputElement;
-      emit("update:modelValue", target.value);
+      emit("update", target.value);
     }
 
     return {
       inputId,
-      inputValue,
       handleInput,
     };
   },
