@@ -33,14 +33,14 @@ import { ref } from "vue";
 import TextButton from "@/components/TextButton.vue";
 import FormField from "@/components/FormField.vue";
 
-interface Schema {
+interface FieldSchema {
   id: string;
   label: string;
-  type?: "text" | "select";
+  type?: "text" | "select" | "number";
   options?: Array<{ label: string; value: string }>;
 }
 
-type FormData = Record<Schema["id"], string>;
+type FormData = Record<FieldSchema["id"], string>;
 
 export default {
   components: {
@@ -57,7 +57,7 @@ export default {
       amount: "",
     });
 
-    const formSchema: Schema[] = [
+    const formSchema: FieldSchema[] = [
       {
         id: "date",
         label: "Date",
@@ -90,7 +90,7 @@ export default {
       {
         id: "amount",
         label: "Amount",
-        type: "text",
+        type: "number",
       },
     ];
 

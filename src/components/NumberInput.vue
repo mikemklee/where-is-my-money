@@ -4,18 +4,21 @@
     <input
       :id="id"
       class="border border-stone-200 py-[2px] px-2 outline-none"
-      type="text"
+      type="number"
       :value="value"
       @input="handleInput"
       :placeholder="placeholder"
       :disabled="disabled"
+      :min="min"
+      :max="max"
+      :step="step"
     />
   </div>
 </template>
 
 <script lang="ts">
 export default {
-  name: "TextInput",
+  name: "NumberInput",
   emits: ["update"],
   props: {
     id: {
@@ -27,8 +30,8 @@ export default {
       default: "",
     },
     value: {
-      type: String,
-      default: "",
+      type: Number,
+      default: null,
     },
     placeholder: {
       type: String,
@@ -38,11 +41,24 @@ export default {
       type: Boolean,
       default: false,
     },
+    min: {
+      type: Number,
+      default: null,
+    },
+    max: {
+      type: Number,
+      default: null,
+    },
+    step: {
+      type: Number,
+      default: null,
+    },
   },
   setup(props, { emit }) {
     function handleInput(event: Event) {
       const target = event.target as HTMLInputElement;
-      emit("update", target.value);
+      const newValue = target.valueAsNumber;
+      emit("update", isNaN(newValue) ? null : newValue);
     }
 
     return {
