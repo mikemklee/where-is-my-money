@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col">
-    <label v-if="label" :for="inputId" class="text-sm">{{ label }}</label>
+    <label v-if="label" :for="id" class="text-sm">{{ label }}</label>
     <input
-      :id="inputId"
+      :id="id"
       class="border border-stone-200 py-[2px] px-2"
       type="text"
       :value="value"
@@ -14,12 +14,14 @@
 </template>
 
 <script lang="ts">
-import { computed } from "vue";
-
 export default {
   name: "TextInput",
   emits: ["update"],
   props: {
+    id: {
+      type: String,
+      default: "",
+    },
     label: {
       type: String,
       default: "",
@@ -38,15 +40,12 @@ export default {
     },
   },
   setup(props, { emit }) {
-    const inputId = computed(() => props.label.toLowerCase());
-
     function handleInput(event: Event) {
       const target = event.target as HTMLInputElement;
       emit("update", target.value);
     }
 
     return {
-      inputId,
       handleInput,
     };
   },

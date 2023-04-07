@@ -9,34 +9,12 @@
     >
       <div class="flex flex-col gap-y-2">
         <TextInput
-          label="Date"
-          :value="form.date"
-          @update="handleFormUpdate('date', $event)"
-        />
-        <TextInput
-          label="Source"
-          :value="form.source"
-          @update="handleFormUpdate('source', $event)"
-        />
-        <TextInput
-          label="Description"
-          :value="form.description"
-          @update="handleFormUpdate('description', $event)"
-        />
-        <TextInput
-          label="Category"
-          :value="form.category"
-          @update="handleFormUpdate('category', $event)"
-        />
-        <TextInput
-          label="Account"
-          :value="form.account"
-          @update="handleFormUpdate('account', $event)"
-        />
-        <TextInput
-          label="Amount"
-          :value="form.amount"
-          @update="handleFormUpdate('amount', $event)"
+          v-for="field in formSchema"
+          :key="field.id"
+          :id="field.id"
+          :label="field.label"
+          :value="form[field.id]"
+          @update="handleFormUpdate(field.id, $event)"
         />
       </div>
 
@@ -53,13 +31,20 @@ import { ref } from "vue";
 import TextButton from "@/components/TextButton.vue";
 import TextInput from "@/components/TextInput.vue";
 
+interface FormField {
+  id: string;
+  label: string;
+}
+
+type FormData = Record<FormField["id"], string>;
+
 export default {
   components: {
     TextButton,
     TextInput,
   },
   setup(_, { emit }) {
-    const form = ref({
+    const form = ref<FormData>({
       date: "",
       source: "",
       description: "",
@@ -67,6 +52,33 @@ export default {
       account: "",
       amount: "",
     });
+
+    const formSchema: FormField[] = [
+      {
+        id: "date",
+        label: "Date",
+      },
+      {
+        id: "source",
+        label: "Source",
+      },
+      {
+        id: "description",
+        label: "Description",
+      },
+      {
+        id: "category",
+        label: "Category",
+      },
+      {
+        id: "account",
+        label: "Account",
+      },
+      {
+        id: "amount",
+        label: "Amount",
+      },
+    ];
 
     const handleClose = () => {
       emit("close");
@@ -77,15 +89,13 @@ export default {
       handleClose();
     };
 
-    const handleFormUpdate = (
-      field: keyof typeof form.value,
-      value: string
-    ) => {
+    const handleFormUpdate = (field: keyof FormData, value: string) => {
       form.value[field] = value;
     };
 
     return {
       form,
+      formSchema,
       handleFormUpdate,
       handleClose,
       handleSave,
