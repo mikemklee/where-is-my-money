@@ -29,9 +29,12 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import TextButton from "@/components/TextButton.vue";
 import FormField from "@/components/FormField.vue";
+import { useCategoriesStore } from "@/stores/categories";
+import { useSourcesStore } from "@/stores/sources";
+import { useAccountsStore } from "@/stores/accounts";
 
 interface FieldSchema {
   id: string;
@@ -48,6 +51,31 @@ export default {
     FormField,
   },
   setup(_, { emit }) {
+    const { categories } = useCategoriesStore();
+    const { sources } = useSourcesStore();
+    const { accounts } = useAccountsStore();
+
+    const categoryOptions = computed(() =>
+      Object.values(categories).map((category) => ({
+        label: category.name,
+        value: category.id,
+      }))
+    );
+
+    const sourceOptions = computed(() =>
+      Object.values(sources).map((source) => ({
+        label: source.name,
+        value: source.id,
+      }))
+    );
+
+    const accountOptions = computed(() =>
+      Object.values(accounts).map((account) => ({
+        label: account.name,
+        value: account.id,
+      }))
+    );
+
     const form = ref<FormData>({
       date: "",
       source: "",
@@ -67,6 +95,7 @@ export default {
         id: "source",
         label: "Source",
         type: "select",
+        options: sourceOptions.value,
       },
       {
         id: "description",
@@ -77,15 +106,13 @@ export default {
         id: "category",
         label: "Category",
         type: "select",
+        options: categoryOptions.value,
       },
       {
         id: "account",
         label: "Account",
         type: "select",
-        options: [
-          { label: "Cash", value: "cash" },
-          { label: "Credit Card", value: "credit-card" },
-        ],
+        options: accountOptions.value,
       },
       {
         id: "amount",
