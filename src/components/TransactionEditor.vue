@@ -2,10 +2,10 @@
   <div class="w-full h-full fixed flex flex-col">
     <div
       class="w-full h-full bg-[#c7c7c7] opacity-75 absolute"
-      @click="$emit('close')"
+      @click="handleClose"
     />
     <div
-      class="border border-stone-200 max-w-2xl mx-auto max-h-2xl my-auto flex flex-col bg-[#fffbfe]"
+      class="border border-stone-200 max-w-2xl mx-auto max-h-2xl my-auto flex flex-col bg-[#fffbfe] rounded p-8"
     >
       <div>
         <label for="date">Date:</label>
@@ -32,18 +32,28 @@
         <input type="text" name="amount" id="amount" />
       </div>
 
-      <div>
-        <button @click="$emit('close')">Cancel</button>
-        <button>Save</button>
+      <div class="flex justify-between mt-2">
+        <StyledButton @click="handleClose">Cancel</StyledButton>
+        <StyledButton @click="handleClose">Save</StyledButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import StyledButton from "@/components/StyledButton.vue";
 export default {
-  setup() {
-    return {};
+  components: {
+    StyledButton,
+  },
+  setup(_, { emit }) {
+    const handleClose = () => {
+      emit("close");
+    };
+
+    return {
+      handleClose,
+    };
   },
 };
 </script>
