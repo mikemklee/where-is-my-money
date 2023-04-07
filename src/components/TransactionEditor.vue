@@ -33,18 +33,18 @@
       </div>
 
       <div class="flex justify-between mt-2">
-        <StyledButton @click="handleClose">Cancel</StyledButton>
-        <StyledButton @click="handleClose">Save</StyledButton>
+        <TextButton @click="handleClose">Cancel</TextButton>
+        <TextButton @click="handleClose">Save</TextButton>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import StyledButton from "@/components/StyledButton.vue";
+import TextButton from "@/components/TextButton.vue";
 export default {
   components: {
-    StyledButton,
+    TextButton,
   },
   setup(_, { emit }) {
     const handleClose = () => {

@@ -3,7 +3,7 @@ import { ref } from "vue";
 import EyesIcon from "@/components/icons/EyesIcon.vue";
 import TransactionTable from "@/components/TransactionTable.vue";
 import TransactionEditor from "@/components/TransactionEditor.vue";
-import StyledButton from "@/components/StyledButton.vue";
+import TextButton from "@/components/TextButton.vue";
 
 async function addTransaction() {
   openEditor();
@@ -17,7 +17,7 @@ function closeEditor() {
   shouldShowEditor.value = false;
 }
 
-const shouldShowEditor = ref(false);
+const shouldShowEditor = ref(true);
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const shouldShowEditor = ref(false);
     </div>
     <TransactionTable />
     <div class="flex justify-between mt-2">
-      <StyledButton @click="addTransaction">add transaction</StyledButton>
+      <TextButton @click="addTransaction">add transaction</TextButton>
     </div>
   </div>
   <TransactionEditor v-if="shouldShowEditor" @close="closeEditor" />

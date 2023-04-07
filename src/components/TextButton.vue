@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: "TextButton",
   emits: ["click"],
   methods: {
     handleClick() {
