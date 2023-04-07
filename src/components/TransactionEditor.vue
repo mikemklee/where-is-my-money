@@ -8,12 +8,14 @@
       class="border border-stone-200 max-w-2xl mx-auto max-h-2xl my-auto flex flex-col bg-[#fffbfe] rounded p-8"
     >
       <div class="flex flex-col gap-y-2">
-        <TextInput
+        <FormField
           v-for="field in formSchema"
           :key="field.id"
           :id="field.id"
           :label="field.label"
           :value="form[field.id]"
+          :type="field.type"
+          :options="field.options"
           @update="handleFormUpdate(field.id, $event)"
         />
       </div>
@@ -29,19 +31,21 @@
 <script lang="ts">
 import { ref } from "vue";
 import TextButton from "@/components/TextButton.vue";
-import TextInput from "@/components/TextInput.vue";
+import FormField from "@/components/FormField.vue";
 
-interface FormField {
+interface Schema {
   id: string;
   label: string;
+  type?: "text" | "select";
+  options?: Array<{ label: string; value: string }>;
 }
 
-type FormData = Record<FormField["id"], string>;
+type FormData = Record<Schema["id"], string>;
 
 export default {
   components: {
     TextButton,
-    TextInput,
+    FormField,
   },
   setup(_, { emit }) {
     const form = ref<FormData>({
@@ -53,30 +57,40 @@ export default {
       amount: "",
     });
 
-    const formSchema: FormField[] = [
+    const formSchema: Schema[] = [
       {
         id: "date",
         label: "Date",
+        type: "text",
       },
       {
         id: "source",
         label: "Source",
+        type: "select",
       },
       {
         id: "description",
         label: "Description",
+        type: "text",
       },
       {
         id: "category",
         label: "Category",
+        type: "select",
       },
       {
         id: "account",
         label: "Account",
+        type: "select",
+        options: [
+          { label: "Cash", value: "cash" },
+          { label: "Credit Card", value: "credit-card" },
+        ],
       },
       {
         id: "amount",
         label: "Amount",
+        type: "text",
       },
     ];
 

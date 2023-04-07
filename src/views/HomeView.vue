@@ -17,7 +17,7 @@ function closeEditor() {
   shouldShowEditor.value = false;
 }
 
-const shouldShowEditor = ref(true);
+const shouldShowEditor = ref(false);
 </script>
 
 <template>

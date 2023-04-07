@@ -3,7 +3,7 @@
     <label v-if="label" :for="id" class="text-sm">{{ label }}</label>
     <select
       :id="id"
-      class="border border-stone-200 py-[4px] px-2"
+      class="border border-stone-200 py-[4px] px-2 outline-none"
       :value="value"
       @change="handleChange"
       :disabled="disabled"
@@ -13,7 +13,7 @@
         :key="index"
         :value="option.value"
       >
-        {{ option.text }}
+        {{ option.label }}
       </option>
     </select>
   </div>
