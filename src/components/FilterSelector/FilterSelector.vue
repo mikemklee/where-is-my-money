@@ -1,11 +1,14 @@
 <template>
   <div class="py-14 px-8">
     <div v-if="categoriesLoaded">
-      <div>
-        <label class="font-semibold text-sm">Categories</label>
-        <TextButton size="sm" @click="onClickManageCategories"
-          >Manage</TextButton
+      <div class="flex items-center mb-2">
+        <label class="font-semibold text-sm mr-2">Categories</label>
+        <div
+          @click="onClickManageCategories"
+          class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
+          <v-icon name="pr-cog" />
+        </div>
       </div>
       <div class="flex flex-wrap">
         <Tag
@@ -19,7 +22,15 @@
     </div>
 
     <div v-if="sourcesLoaded" class="mt-4">
-      <label class="font-semibold text-sm">Sources</label>
+      <div class="flex items-center mb-2">
+        <label class="font-semibold text-sm mr-2">Sources</label>
+        <div
+          @click="onClickManageCategories"
+          class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
+        >
+          <v-icon name="pr-cog" />
+        </div>
+      </div>
       <div class="flex flex-wrap">
         <Tag
           v-for="source in sources"
@@ -32,7 +43,15 @@
     </div>
 
     <div v-if="accountsLoaded" class="mt-4">
-      <label class="font-semibold text-sm">Accounts</label>
+      <div class="flex items-center mb-2">
+        <label class="font-semibold text-sm mr-2">Accounts</label>
+        <div
+          @click="onClickManageCategories"
+          class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
+        >
+          <v-icon name="pr-cog" />
+        </div>
+      </div>
       <div class="flex flex-wrap">
         <Tag
           v-for="account in accounts"
@@ -54,13 +73,11 @@ import { useAccountsStore } from "@/stores/accounts";
 import { useTransactionsStore } from "@/stores/transactions";
 
 import Tag from "@/components/FilterSelector/Tag.vue";
-import TextButton from "@/components/TextButton.vue";
 
 export default {
   name: "FilterSelector",
   components: {
     Tag,
-    TextButton,
   },
   setup() {
     const { categories } = useCategoriesStore();
@@ -137,5 +154,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped></style>
