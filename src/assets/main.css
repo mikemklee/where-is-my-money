@@ -26,6 +26,6 @@ body {
 #app {
   min-height: 100vh;
   display: flex;
-  background-color: #fffbfe;
+  background-color: #fff;
   color: #1a202c;
 }

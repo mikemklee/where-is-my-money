@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { supabase } from "@/lib/supabaseClient";
 
-interface Category {
+export interface Category {
   id: number;
   name: string;
 }
