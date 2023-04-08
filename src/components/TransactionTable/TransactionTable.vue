@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
-import TransactionRow from "@/components/TransactionTable/TransactionRow.vue";
+import TextButton from "@/components/TextButton.vue";
+import TransactionEditor from "@/components/TransactionEditor/TransactionEditor.vue";
 import TableHeaderCell from "@/components/TransactionTable/TableHeaderCell.vue";
+import TransactionRow from "@/components/TransactionTable/TransactionRow.vue";
 
+import { useAccountsStore } from "@/stores/accounts";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
-import { useAccountsStore } from "@/stores/accounts";
 import { useTransactionsStore } from "@/stores/transactions";
 import { storeToRefs } from "pinia";
 
@@ -23,9 +25,30 @@ onMounted(() => {
     transactionStore.getTransactions();
   });
 });
+
+async function addTransaction() {
+  openEditor();
+}
+
+function openEditor() {
+  shouldShowEditor.value = true;
+}
+
+function closeEditor() {
+  shouldShowEditor.value = false;
+}
+
+const shouldShowEditor = ref(false);
 </script>
 
 <template>
+  <div v-if="shouldShowEditor" class="my-4">
+    <TransactionEditor @close="closeEditor" />
+  </div>
+  <div v-else class="flex justify-between my-4 items-center">
+    <h3 class="text-lg font-semibold">Transactions</h3>
+    <TextButton @click="addTransaction">Add transaction</TextButton>
+  </div>
   <table class="w-full border-collapse">
     <thead class="">
       <tr class="text-left border-b border-stone-400">

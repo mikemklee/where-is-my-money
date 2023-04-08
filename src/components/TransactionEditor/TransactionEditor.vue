@@ -2,16 +2,57 @@
   <div class="border border-gray-100 my-6 flex flex-col rounded p-4">
     <h3 class="font-semibold text-lg mb-4">Add transaction</h3>
     <div class="flex flex-col gap-y-2">
-      <FormField
-        v-for="field in formSchema"
-        :key="field.id"
-        :id="field.id"
-        :label="field.label"
-        :value="form[field.id]"
-        :type="field.type"
-        :options="field.options"
-        @update="handleFormUpdate(field.id, $event)"
-      />
+      <div class="grid grid-cols-2 gap-2">
+        <FormField
+          id="created_at"
+          label="Date"
+          type="date"
+          :value="form['date']"
+          @update="handleFormUpdate('date', $event)"
+        />
+        <FormField
+          id="amount"
+          label="Amount"
+          type="number"
+          :value="form['amount']"
+          @update="handleFormUpdate('amount', $event)"
+        />
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <FormField
+          id="account"
+          label="Account"
+          type="select"
+          :options="accountOptions"
+          :value="form['account']"
+          @update="handleFormUpdate('account', $event)"
+        />
+        <FormField
+          id="source"
+          label="Source"
+          type="select"
+          :options="sourceOptions"
+          :value="form['source']"
+          @update="handleFormUpdate('source', $event)"
+        />
+        <FormField
+          id="category"
+          label="Category"
+          type="select"
+          :options="categoryOptions"
+          :value="form['category']"
+          @update="handleFormUpdate('category', $event)"
+        />
+      </div>
+      <div class="grid grid-cols-1 gap-2">
+        <FormField
+          id="description"
+          label="Description"
+          type="text"
+          :value="form['description']"
+          @update="handleFormUpdate('description', $event)"
+        />
+      </div>
     </div>
 
     <div class="flex justify-between mt-4">
@@ -137,6 +178,9 @@ export default {
     return {
       form,
       formSchema,
+      sourceOptions,
+      categoryOptions,
+      accountOptions,
       handleFormUpdate,
       handleClose,
       handleSave,
