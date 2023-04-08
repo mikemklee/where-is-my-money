@@ -1,8 +1,17 @@
 import { defineStore } from "pinia";
 import { supabase } from "@/lib/supabaseClient";
 
+interface Category {
+  id: number;
+  name: string;
+}
+
+interface CategoriesState {
+  categories: Record<number, Category>;
+}
+
 export const useCategoriesStore = defineStore("categories", {
-  state: () => {
+  state: (): CategoriesState => {
     return { categories: {} };
   },
   actions: {
@@ -12,6 +21,19 @@ export const useCategoriesStore = defineStore("categories", {
       data.forEach((category) => {
         this.categories[category.id] = category;
       });
+    },
+    async addCategory(categoryName: string) {
+      const { data, error } = await supabase
+        .from("categories")
+        .insert({ name: categoryName })
+        .select();
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      this.categories[data[0].id] = data[0];
     },
   },
 });
