@@ -26,7 +26,7 @@ const shouldShowEditor = ref(false);
     <div class="bg-[#f9fafb] h-full w-80 border border-r-gray-100">
       <FilterSelector />
     </div>
-    <div class="mx-auto my-12 min-w-[50rem]">
+    <div class="px-8 mx-auto my-12 min-w-[50rem]">
       <div class="mb-4">
         <h1 class="text-3xl font-bold">wimm</h1>
         <div class="flex items-center">

@@ -1,24 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 
-import { supabase } from "@/lib/supabaseClient";
 import TransactionRow from "@/components/TransactionTable/TransactionRow.vue";
 import TableHeaderCell from "@/components/TransactionTable/TableHeaderCell.vue";
 
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
+import { useTransactionsStore } from "@/stores/transactions";
 
 const { getCategories } = useCategoriesStore();
 const { getSources } = useSourcesStore();
 const { getAccounts } = useAccountsStore();
-
-const transactions = ref([]);
-
-async function getTransactions() {
-  const { data } = await supabase.from("transactions").select();
-  transactions.value = data;
-}
+const { getTransactions, transactions } = useTransactionsStore();
 
 onMounted(() => {
   Promise.all([getCategories(), getSources(), getAccounts()]).then(() => {
