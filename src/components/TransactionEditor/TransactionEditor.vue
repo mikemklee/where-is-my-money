@@ -31,7 +31,7 @@
 <script lang="ts">
 import { ref, computed } from "vue";
 import TextButton from "@/components/TextButton.vue";
-import FormField from "@/components/FormField.vue";
+import FormField from "@/components/TransactionEditor/FormField.vue";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";

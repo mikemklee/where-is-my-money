@@ -14,13 +14,13 @@
   </tr>
 </template>
 
-<script>
+<script lang="ts">
 import { format } from "date-fns";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
 
-import TableDataCell from "@/components/TableDataCell.vue";
+import TableDataCell from "@/components/TransactionTable/TableDataCell.vue";
 
 export default {
   props: {

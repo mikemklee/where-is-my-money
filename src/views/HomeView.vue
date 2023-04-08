@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import EyesIcon from "@/components/icons/EyesIcon.vue";
-import TransactionTable from "@/components/TransactionTable.vue";
-import TransactionEditor from "@/components/TransactionEditor.vue";
+import TransactionTable from "@/components/TransactionTable/TransactionTable.vue";
+import TransactionEditor from "@/components/TransactionEditor/TransactionEditor.vue";
 import TextButton from "@/components/TextButton.vue";
 
 async function addTransaction() {

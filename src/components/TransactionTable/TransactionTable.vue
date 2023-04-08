@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 
 import { supabase } from "@/lib/supabaseClient";
-import TransactionRow from "@/components/TransactionRow.vue";
-import TableHeaderCell from "@/components/TableHeaderCell.vue";
+import TransactionRow from "@/components/TransactionTable/TransactionRow.vue";
+import TableHeaderCell from "@/components/TransactionTable/TableHeaderCell.vue";
 
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
