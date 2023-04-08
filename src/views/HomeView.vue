@@ -34,11 +34,13 @@ const shouldShowEditor = ref(false);
           <EyesIcon />
         </div>
       </div>
-      <TransactionTable />
-      <div class="flex justify-between mt-2">
+      <div v-if="shouldShowEditor" class="my-4">
+        <TransactionEditor @close="closeEditor" />
+      </div>
+      <div v-else class="flex justify-between my-4">
         <TextButton @click="addTransaction">Add transaction</TextButton>
       </div>
+      <TransactionTable />
     </div>
-    <TransactionEditor v-if="shouldShowEditor" @close="closeEditor" />
   </main>
 </template>

@@ -1,29 +1,22 @@
 <template>
-  <div class="w-full h-full fixed flex flex-col">
-    <div
-      class="w-full h-full bg-[#c7c7c7] opacity-75 absolute"
-      @click="handleClose"
-    />
-    <div
-      class="border border-stone-200 max-w-2xl mx-auto max-h-2xl my-auto flex flex-col bg-[#fffbfe] rounded p-8"
-    >
-      <div class="flex flex-col gap-y-2">
-        <FormField
-          v-for="field in formSchema"
-          :key="field.id"
-          :id="field.id"
-          :label="field.label"
-          :value="form[field.id]"
-          :type="field.type"
-          :options="field.options"
-          @update="handleFormUpdate(field.id, $event)"
-        />
-      </div>
+  <div class="border border-gray-100 my-6 flex flex-col rounded p-4">
+    <h3 class="font-semibold text-lg mb-4">Add transaction</h3>
+    <div class="flex flex-col gap-y-2">
+      <FormField
+        v-for="field in formSchema"
+        :key="field.id"
+        :id="field.id"
+        :label="field.label"
+        :value="form[field.id]"
+        :type="field.type"
+        :options="field.options"
+        @update="handleFormUpdate(field.id, $event)"
+      />
+    </div>
 
-      <div class="flex justify-between mt-4">
-        <TextButton @click="handleClose">Cancel</TextButton>
-        <TextButton @click="handleSave">Save</TextButton>
-      </div>
+    <div class="flex justify-between mt-4">
+      <TextButton @click="handleClose">Cancel</TextButton>
+      <TextButton @click="handleSave">Save</TextButton>
     </div>
   </div>
 </template>
