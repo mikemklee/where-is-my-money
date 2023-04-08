@@ -4,11 +4,24 @@
       <div class="flex items-center mb-2">
         <label class="font-semibold text-sm mr-2">Categories</label>
         <div
-          @click="onClickManageCategories"
+          @click="toggleTagEditor('category')"
           class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
           <v-icon name="pr-cog" />
         </div>
+      </div>
+      <div
+        v-if="state.shouldShowTagEditor"
+        class="border-l-2 border-gray-200 my-4 p-3 flex items-center"
+      >
+        <TextInput
+          v-model="state.tagName"
+          placeholder="New category"
+          class="grow mr-2"
+        />
+        <TextButton size="sm" @click="handleSaveTag('category')">
+          Save
+        </TextButton>
       </div>
       <div class="flex flex-wrap">
         <Tag
@@ -25,7 +38,7 @@
       <div class="flex items-center mb-2">
         <label class="font-semibold text-sm mr-2">Sources</label>
         <div
-          @click="onClickManageCategories"
+          @click="toggleTagEditor('source')"
           class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
           <v-icon name="pr-cog" />
@@ -46,7 +59,7 @@
       <div class="flex items-center mb-2">
         <label class="font-semibold text-sm mr-2">Accounts</label>
         <div
-          @click="onClickManageCategories"
+          @click="toggleTagEditor('account')"
           class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"
         >
           <v-icon name="pr-cog" />
@@ -66,18 +79,22 @@
 </template>
 
 <script lang="ts">
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
 import { useTransactionsStore } from "@/stores/transactions";
 
 import Tag from "@/components/FilterSelector/Tag.vue";
+import TextInput from "../TextInput.vue";
+import TextButton from "../TextButton.vue";
 
 export default {
   name: "FilterSelector",
   components: {
     Tag,
+    TextInput,
+    TextButton,
   },
   setup() {
     const { categories } = useCategoriesStore();
@@ -105,8 +122,19 @@ export default {
       await getTransactions(filters);
     };
 
-    const onClickManageCategories = () => {
-      console.log("onCLickManageCategories");
+    function toggleTagEditor(tagType: string) {
+      tagEditorState.shouldShowTagEditor = !tagEditorState.shouldShowTagEditor;
+      tagEditorState.tagType = tagType;
+    }
+
+    const tagEditorState = reactive({
+      shouldShowTagEditor: false,
+      tagType: "category",
+      tagName: "",
+    });
+
+    const handleSaveTag = (tagType: string) => {
+      console.log(tagType, tagEditorState.tagName);
     };
 
     const onSelectCategoryFilter = (categoryId: number) => {
@@ -144,12 +172,14 @@ export default {
       accounts,
       accountsLoaded,
       categoryFilters,
-      onClickManageCategories,
       onSelectCategoryFilter,
       sourceFilters,
       onSelectSourceFilter,
       accountFilters,
       onSelectAccountFilter,
+      toggleTagEditor,
+      state: tagEditorState,
+      handleSaveTag,
     };
   },
 };
