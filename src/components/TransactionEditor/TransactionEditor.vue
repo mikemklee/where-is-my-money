@@ -35,6 +35,7 @@ import FormField from "@/components/TransactionEditor/FormField.vue";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
+import { useTransactionsStore } from "@/stores/transactions";
 
 interface FieldSchema {
   id: string;
@@ -54,6 +55,7 @@ export default {
     const { categories } = useCategoriesStore();
     const { sources } = useSourcesStore();
     const { accounts } = useAccountsStore();
+    const { addTransaction } = useTransactionsStore();
 
     const categoryOptions = computed(() =>
       Object.values(categories).map((category) => ({
@@ -77,7 +79,7 @@ export default {
     );
 
     const form = ref<FormData>({
-      date: "",
+      created_at: "",
       source: "",
       description: "",
       category: "",
@@ -87,7 +89,7 @@ export default {
 
     const formSchema: FieldSchema[] = [
       {
-        id: "date",
+        id: "created_at",
         label: "Date",
         type: "text",
       },
@@ -126,7 +128,12 @@ export default {
     };
 
     const handleSave = () => {
-      console.log("form data", form.value);
+      const formatted = {
+        ...form.value,
+        created_at: new Date(form.value.created_at),
+        amount: form.value.amount * 100,
+      };
+      addTransaction(formatted);
       handleClose();
     };
 
