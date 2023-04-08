@@ -17,6 +17,7 @@
 import TextInput from "@/components/TextInput.vue";
 import SelectInput from "@/components/SelectInput.vue";
 import NumberInput from "@/components/NumberInput.vue";
+import DateInput from "@/components/DateInput.vue";
 
 export default {
   name: "FormField",
@@ -24,6 +25,7 @@ export default {
     TextInput,
     SelectInput,
     NumberInput,
+    DateInput,
   },
   props: {
     id: {
@@ -73,6 +75,8 @@ export default {
           return "SelectInput";
         case "number":
           return "NumberInput";
+        case "date":
+          return "DateInput";
         default:
           return "TextInput";
       }

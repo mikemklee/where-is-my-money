@@ -40,7 +40,7 @@ import { useTransactionsStore } from "@/stores/transactions";
 interface FieldSchema {
   id: string;
   label: string;
-  type?: "text" | "select" | "number";
+  type?: "text" | "select" | "number" | "date";
   options?: Array<{ label: string; value: string }>;
 }
 
@@ -91,7 +91,7 @@ export default {
       {
         id: "created_at",
         label: "Date",
-        type: "text",
+        type: "date",
       },
       {
         id: "source",
@@ -130,8 +130,8 @@ export default {
     const handleSave = () => {
       const formatted = {
         ...form.value,
-        created_at: new Date(form.value.created_at),
-        amount: form.value.amount * 100,
+        created_at: new Date(form.value.created_at + "T00:00"), // save as UTC
+        amount: form.value.amount * 100, // convert to cents
       };
       addTransaction(formatted);
       handleClose();
