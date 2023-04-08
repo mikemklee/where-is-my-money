@@ -1,7 +1,12 @@
 <template>
   <div class="py-14 px-8">
     <div v-if="categoriesLoaded">
-      <label class="font-semibold text-sm">Categories</label>
+      <div>
+        <label class="font-semibold text-sm">Categories</label>
+        <TextButton size="sm" @click="onClickManageCategories"
+          >Manage</TextButton
+        >
+      </div>
       <div class="flex flex-wrap">
         <Tag
           v-for="category in categories"
@@ -49,11 +54,13 @@ import { useAccountsStore } from "@/stores/accounts";
 import { useTransactionsStore } from "@/stores/transactions";
 
 import Tag from "@/components/FilterSelector/Tag.vue";
+import TextButton from "@/components/TextButton.vue";
 
 export default {
   name: "FilterSelector",
   components: {
     Tag,
+    TextButton,
   },
   setup() {
     const { categories } = useCategoriesStore();
@@ -79,6 +86,10 @@ export default {
       };
 
       await getTransactions(filters);
+    };
+
+    const onClickManageCategories = () => {
+      console.log("onCLickManageCategories");
     };
 
     const onSelectCategoryFilter = (categoryId: number) => {
@@ -116,6 +127,7 @@ export default {
       accounts,
       accountsLoaded,
       categoryFilters,
+      onClickManageCategories,
       onSelectCategoryFilter,
       sourceFilters,
       onSelectSourceFilter,
