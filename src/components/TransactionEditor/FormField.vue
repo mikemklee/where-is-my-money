@@ -1,4 +1,3 @@
-<!-- Field.vue -->
 <template>
   <component
     :is="fieldComponent"

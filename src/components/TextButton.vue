@@ -1,7 +1,7 @@
 <template>
   <button
     @click="handleClick"
-    class="py-1 px-2 border border-stone-200 text-sm hover:bg-stone-200 transition-colors"
+    class="py-2 px-3 border border-stone-200 text-sm hover:bg-stone-200 transition-colors"
   >
     <slot></slot>
   </button>
