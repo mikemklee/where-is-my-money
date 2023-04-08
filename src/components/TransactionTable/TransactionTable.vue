@@ -8,15 +8,19 @@ import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
 import { useTransactionsStore } from "@/stores/transactions";
+import { storeToRefs } from "pinia";
 
 const { getCategories } = useCategoriesStore();
 const { getSources } = useSourcesStore();
 const { getAccounts } = useAccountsStore();
-const { getTransactions, transactions } = useTransactionsStore();
+
+const transactionStore = useTransactionsStore();
+const { transactions } = storeToRefs(transactionStore);
 
 onMounted(() => {
   Promise.all([getCategories(), getSources(), getAccounts()]).then(() => {
-    getTransactions();
+    // load with no filters
+    transactionStore.getTransactions();
   });
 });
 </script>
