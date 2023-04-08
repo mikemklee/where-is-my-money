@@ -85,8 +85,6 @@ export default {
         accounts: [...accountFilters],
       };
 
-      console.log(filters);
-
       await getTransactions(filters);
     };
 

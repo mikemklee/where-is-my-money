@@ -36,7 +36,7 @@ const shouldShowEditor = ref(false);
       </div>
       <TransactionTable />
       <div class="flex justify-between mt-2">
-        <TextButton @click="addTransaction">add transaction</TextButton>
+        <TextButton @click="addTransaction">Add transaction</TextButton>
       </div>
     </div>
     <TransactionEditor v-if="shouldShowEditor" @close="closeEditor" />
