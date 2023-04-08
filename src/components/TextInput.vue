@@ -3,9 +3,10 @@
     <label v-if="label" :for="id" class="text-sm">{{ label }}</label>
     <input
       :id="id"
-      class="border border-stone-200 h-8 px-2 outline-none"
+      class="border border-stone-200 h-8 px-2 outline-none rounded"
       type="text"
       :value="value"
+      size="1"
       @input="handleInput"
       :placeholder="placeholder"
       :disabled="disabled"
