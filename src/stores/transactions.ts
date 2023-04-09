@@ -21,6 +21,14 @@ export interface TransactionsState {
 
 export const useTransactionsStore = defineStore("transactions", {
   state: (): TransactionsState => ({ transactions: {} }),
+  getters: {
+    orderedTransactions(): Transaction[] {
+      const ordered = Object.values(this.transactions).sort((a, b) => {
+        return Date.parse(b.created_at) - Date.parse(a.created_at);
+      });
+      return ordered;
+    },
+  },
   actions: {
     async getTransactions(filters = {}) {
       const { categories, accounts, sources } = filters;

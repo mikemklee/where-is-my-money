@@ -17,7 +17,7 @@ const { getSources } = useSourcesStore();
 const { getAccounts } = useAccountsStore();
 
 const transactionStore = useTransactionsStore();
-const { transactions } = storeToRefs(transactionStore);
+const { transactions, orderedTransactions } = storeToRefs(transactionStore);
 
 const selectedTransactionId = ref<number | null>(null);
 
@@ -80,7 +80,7 @@ const selectedTransaction = computed(() => {
     </thead>
     <tbody>
       <TransactionRow
-        v-for="transaction in transactions"
+        v-for="transaction in orderedTransactions"
         :key="transaction.id"
         :transaction="transaction"
         @edit="editTransaction"
