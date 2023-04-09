@@ -43,6 +43,7 @@ function openEditor() {
 
 function closeEditor() {
   shouldShowEditor.value = false;
+  selectedTransactionId.value = null;
 }
 
 const shouldShowEditor = ref(false);
