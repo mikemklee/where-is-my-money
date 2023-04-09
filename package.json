@@ -11,6 +11,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@fontsource/noto-sans-kr": "^4.5.12",
+    "@fontsource/source-sans-pro": "^4.5.11",
     "@supabase/supabase-js": "^2.7.1",
     "date-fns": "^2.29.3",
     "oh-vue-icons": "^1.0.0-rc3",

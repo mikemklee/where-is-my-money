@@ -1,6 +1,9 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 
+import "@fontsource/noto-sans-kr";
+import "@fontsource/source-sans-pro";
+
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { PrCog, PrTimes } from "oh-vue-icons/icons";
 
