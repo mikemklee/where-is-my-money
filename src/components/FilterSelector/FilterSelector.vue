@@ -1,5 +1,8 @@
 <template>
-  <div class="py-14 px-8 flex flex-col gap-y-6">
+  <div
+    class="p-8 flex flex-col gap-y-4 bg-[#f9fafb] h-full w-80 border-r border-gray-100"
+  >
+    <span class="font-semibold">Filters</span>
     <FilterGroup
       v-if="accountsLoaded"
       title="Accounts"

@@ -5,19 +5,21 @@ import FilterSelector from "@/components/FilterSelector/FilterSelector.vue";
 </script>
 
 <template>
-  <main class="flex w-full">
-    <div class="bg-[#f9fafb] h-full w-80 border border-r-gray-100">
-      <FilterSelector />
-    </div>
-    <div class="px-8 mx-auto my-12 min-w-[50rem]">
-      <div class="mb-4">
-        <h1 class="text-3xl font-bold">wimm</h1>
-        <div class="flex items-center">
-          <span class="mr-2">where is my money</span>
-          <EyesIcon />
-        </div>
+  <main class="flex flex-col w-full">
+    <div
+      class="border-b border-gray-100 flex flex-col py-2 px-8 bg-gradient-to-r from-[#f9fafb]"
+    >
+      <h3 class="text-2xl font-bold">wimm</h3>
+      <div class="flex items-center">
+        <span class="mr-2 text-sm">where is my money</span>
+        <EyesIcon />
       </div>
-      <TransactionTable />
+    </div>
+    <div class="flex w-full h-full">
+      <FilterSelector />
+      <div class="p-8 mx-auto min-w-[50rem]">
+        <TransactionTable />
+      </div>
     </div>
   </main>
 </template>

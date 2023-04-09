@@ -2,8 +2,11 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { PrCog } from "oh-vue-icons/icons";
-addIcons(PrCog);
+import { PrCog, PrTimes } from "oh-vue-icons/icons";
+
+const icons = [PrCog, PrTimes];
+
+addIcons(...icons);
 
 import App from "./App.vue";
 import router from "./router";

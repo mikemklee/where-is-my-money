@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center mb-2">
-      <label class="font-semibold text-sm mr-2">{{ title }}</label>
+      <label class="font-semibold opacity-80 text-sm mr-2">{{ title }}</label>
       <div
         @click="toggleTagEditor"
         class="opacity-50 hover:opacity-100 transition-opacity cursor-pointer"

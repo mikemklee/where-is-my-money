@@ -45,7 +45,7 @@ const shouldShowEditor = ref(false);
   <div v-if="shouldShowEditor" class="my-4">
     <TransactionEditor @close="closeEditor" />
   </div>
-  <div v-else class="flex justify-between my-4 items-center">
+  <div v-else class="flex justify-between mb-4 items-center">
     <h3 class="text-lg font-semibold">Transactions</h3>
     <TextButton @click="addTransaction">Add transaction</TextButton>
   </div>
