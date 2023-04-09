@@ -58,15 +58,11 @@
     </div>
 
     <div class="flex justify-between mt-4">
-      <TextButton @click="handleClose">Cancel</TextButton>
-      <div class="flex gap-x-4">
-        <TextButton
-          v-if="selectedTransaction"
-          @click="handleDelete"
-          color="red"
-        >
-          Delete
-        </TextButton>
+      <TextButton v-if="selectedTransaction" @click="handleDelete" color="red">
+        Delete
+      </TextButton>
+      <div class="ml-auto flex gap-x-4">
+        <TextButton @click="handleClose">Cancel</TextButton>
         <TextButton fill @click="handleSave">Save</TextButton>
       </div>
     </div>
