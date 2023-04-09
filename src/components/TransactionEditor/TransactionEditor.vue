@@ -107,7 +107,8 @@ export default {
     const { categories } = useCategoriesStore();
     const { sources } = useSourcesStore();
     const { accounts } = useAccountsStore();
-    const { addTransaction, editTransaction } = useTransactionsStore();
+    const { addTransaction, editTransaction, deleteTransaction } =
+      useTransactionsStore();
 
     const categoryOptions = computed(() =>
       Object.values(categories).map((category) => ({
@@ -198,12 +199,13 @@ export default {
       emit("close");
     };
 
-    const handleDelete = () => {
-      console.log("delete", props.selectedTransaction!.id);
+    const handleDelete = async () => {
+      await deleteTransaction(props.selectedTransaction!.id);
+
       handleClose();
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
       const formatted = {
         ...form.value,
         created_at: new Date(form.value.created_at + "T00:00"), // save as UTC
@@ -211,9 +213,9 @@ export default {
       };
 
       if (props.selectedTransaction) {
-        editTransaction(props.selectedTransaction.id, formatted);
+        await editTransaction(props.selectedTransaction.id, formatted);
       } else {
-        addTransaction(formatted);
+        await addTransaction(formatted);
       }
 
       handleClose();

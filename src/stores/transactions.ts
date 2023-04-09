@@ -81,5 +81,18 @@ export const useTransactionsStore = defineStore("transactions", {
       const transaction = data[0] as Transaction;
       this.transactions[transaction.id] = transaction;
     },
+    async deleteTransaction(transactionId: number) {
+      const { error } = await supabase
+        .from("transactions")
+        .delete()
+        .eq("id", transactionId);
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      delete this.transactions[transactionId];
+    },
   },
 });
