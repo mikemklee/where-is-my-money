@@ -13,5 +13,18 @@ export const useSourcesStore = defineStore("sources", {
         this.sources[source.id] = source;
       });
     },
+    async addSource(name: string) {
+      const { data, error } = await supabase
+        .from("sources")
+        .insert({ name: name })
+        .select();
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      this.sources[data[0].id] = data[0];
+    },
   },
 });

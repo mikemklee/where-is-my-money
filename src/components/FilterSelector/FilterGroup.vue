@@ -16,7 +16,7 @@
       <TextInput
         :value="state.name"
         @update="handleUpdateName"
-        placeholder="New filter"
+        placeholder="New name"
         class="grow mr-2"
       />
       <TextButton size="sm" @click="handleSaveTag"> Save </TextButton>
@@ -75,7 +75,9 @@ export default defineComponent({
     };
 
     const handleSaveTag = () => {
-      console.log(tagEditorState.name);
+      emit("add", tagEditorState.name);
+      tagEditorState.shouldShowEditor = false;
+      tagEditorState.name = "";
     };
 
     const onSelectFilter = (filterId: number) => {

@@ -22,10 +22,10 @@ export const useCategoriesStore = defineStore("categories", {
         this.categories[category.id] = category;
       });
     },
-    async addCategory(categoryName: string) {
+    async addCategory(name: string) {
       const { data, error } = await supabase
         .from("categories")
-        .insert({ name: categoryName })
+        .insert({ name: name })
         .select();
 
       if (error) {

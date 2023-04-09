@@ -1,27 +1,28 @@
 <template>
   <div class="py-14 px-8 flex flex-col gap-y-6">
     <FilterGroup
-      v-if="categoriesLoaded"
-      title="Categories"
-      :filters="categories"
-      :selectedFilters="categoryFilters"
-      @select="(id) => onSelectFilter(id, 'categories')"
+      v-if="accountsLoaded"
+      title="Accounts"
+      :filters="accounts"
+      :selectedFilters="accountFilters"
+      @select="(id) => onSelectFilter(id, 'accounts')"
+      @add="(name) => onAddFilter(name, 'accounts')"
     />
-
     <FilterGroup
       v-if="sourcesLoaded"
       title="Sources"
       :filters="sources"
       :selectedFilters="sourceFilters"
       @select="(id) => onSelectFilter(id, 'sources')"
+      @add="(name) => onAddFilter(name, 'sources')"
     />
-
     <FilterGroup
-      v-if="accountsLoaded"
-      title="Accounts"
-      :filters="accounts"
-      :selectedFilters="accountFilters"
-      @select="(id) => onSelectFilter(id, 'accounts')"
+      v-if="categoriesLoaded"
+      title="Categories"
+      :filters="categories"
+      :selectedFilters="categoryFilters"
+      @select="(id) => onSelectFilter(id, 'categories')"
+      @add="(name) => onAddFilter(name, 'categories')"
     />
   </div>
 </template>
@@ -43,9 +44,9 @@ export default {
     FilterGroup,
   },
   setup() {
-    const { categories } = useCategoriesStore();
-    const { sources } = useSourcesStore();
-    const { accounts } = useAccountsStore();
+    const { categories, addCategory } = useCategoriesStore();
+    const { sources, addSource } = useSourcesStore();
+    const { accounts, addAccount } = useAccountsStore();
     const { getTransactions } = useTransactionsStore();
 
     const categoryFilters = reactive(new Set<number>());
@@ -84,6 +85,16 @@ export default {
       handleFilterSelection();
     };
 
+    const onAddFilter = (name: string, filterType: FilterType) => {
+      if (filterType === "categories") {
+        addCategory(name);
+      } else if (filterType === "sources") {
+        addSource(name);
+      } else if (filterType === "accounts") {
+        addAccount(name);
+      }
+    };
+
     return {
       categories,
       categoriesLoaded,
@@ -95,6 +106,7 @@ export default {
       sourceFilters,
       accountFilters,
       onSelectFilter,
+      onAddFilter,
     };
   },
 };
