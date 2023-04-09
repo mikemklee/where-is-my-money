@@ -3,17 +3,24 @@ import { supabase } from "@/lib/supabaseClient";
 
 export interface Transaction {
   id: number;
-  name: string;
+  description: string;
+  amount: number;
+  created_at: string;
+  account: number;
+  category: number;
+  source: number;
+}
+
+interface TransactionRecords {
+  [id: number]: Transaction;
 }
 
 export interface TransactionsState {
-  transactions: Record<number, Transaction>;
+  transactions: TransactionRecords;
 }
 
 export const useTransactionsStore = defineStore("transactions", {
-  state: () => {
-    return { transactions: {} };
-  },
+  state: (): TransactionsState => ({ transactions: {} }),
   actions: {
     async getTransactions(filters = {}) {
       const { categories, accounts, sources } = filters;
@@ -38,9 +45,9 @@ export const useTransactionsStore = defineStore("transactions", {
       }
 
       // populate transactions
-      const transactions = {};
+      const transactions: TransactionRecords = {};
       data.forEach((transaction) => {
-        transactions[transaction.id] = transaction;
+        transactions[transaction.id] = transaction as Transaction;
       });
 
       this.transactions = transactions;
@@ -56,7 +63,8 @@ export const useTransactionsStore = defineStore("transactions", {
         return;
       }
 
-      this.transactions[data[0].id] = data[0];
+      const transaction = data[0] as Transaction;
+      this.transactions[transaction.id] = transaction;
     },
     async editTransaction(transactionId: number, transactionData: Object) {
       const { data, error } = await supabase
@@ -70,7 +78,8 @@ export const useTransactionsStore = defineStore("transactions", {
         return;
       }
 
-      this.transactions[data[0].id] = data[0];
+      const transaction = data[0] as Transaction;
+      this.transactions[transaction.id] = transaction;
     },
   },
 });
