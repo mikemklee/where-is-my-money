@@ -9,7 +9,7 @@
     <TableDataCell>{{ transactionCategory }}</TableDataCell>
     <TableDataCell>{{ transactionAccount }}</TableDataCell>
     <TableDataCell
-      :class="transactionAmountRaw < 0 ? 'text-red-700' : 'text-green-700'"
+      :class="transactionAmountRaw < 0 ? 'text-red-600' : 'text-primary'"
       class="text-right"
     >
       {{ transactionAmountFormatted }}

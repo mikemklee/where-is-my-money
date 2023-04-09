@@ -19,7 +19,7 @@
         placeholder="New name"
         class="grow mr-2"
       />
-      <TextButton size="sm" @click="handleSaveTag"> Save </TextButton>
+      <TextButton size="sm" @click="handleSaveTag">Save</TextButton>
     </div>
     <div class="flex flex-wrap">
       <Tag

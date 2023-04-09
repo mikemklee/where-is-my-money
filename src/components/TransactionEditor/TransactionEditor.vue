@@ -59,7 +59,16 @@
 
     <div class="flex justify-between mt-4">
       <TextButton @click="handleClose">Cancel</TextButton>
-      <TextButton @click="handleSave">Save</TextButton>
+      <div class="flex gap-x-4">
+        <TextButton
+          v-if="selectedTransaction"
+          @click="handleDelete"
+          color="red"
+        >
+          Delete
+        </TextButton>
+        <TextButton fill @click="handleSave">Save</TextButton>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +77,7 @@
 import { ref, computed, watchEffect } from "vue";
 import TextButton from "@/components/TextButton.vue";
 import FormField from "@/components/TransactionEditor/FormField.vue";
+
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
 import { useAccountsStore } from "@/stores/accounts";
@@ -188,6 +198,11 @@ export default {
       emit("close");
     };
 
+    const handleDelete = () => {
+      console.log("delete", props.selectedTransaction!.id);
+      handleClose();
+    };
+
     const handleSave = () => {
       const formatted = {
         ...form.value,
@@ -216,6 +231,7 @@ export default {
       accountOptions,
       handleFormUpdate,
       handleClose,
+      handleDelete,
       handleSave,
     };
   },
