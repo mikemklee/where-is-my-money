@@ -1,14 +1,16 @@
 <template>
   <div class="border border-gray-100 my-6 flex flex-col rounded p-4">
-    <h3 class="font-semibold text-lg mb-4">Add transaction</h3>
+    <h3 class="font-semibold text-lg mb-4">
+      {{ selectedTransaction ? "Edit" : "Add" }} transaction
+    </h3>
     <div class="flex flex-col gap-y-2">
       <div class="grid grid-cols-2 gap-2">
         <FormField
           id="created_at"
           label="Date"
           type="date"
-          :value="form['date']"
-          @update="handleFormUpdate('date', $event)"
+          :value="form['created_at']"
+          @update="handleFormUpdate('created_at', $event)"
         />
         <FormField
           id="amount"
@@ -63,7 +65,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, watchEffect } from "vue";
 import TextButton from "@/components/TextButton.vue";
 import FormField from "@/components/TransactionEditor/FormField.vue";
 import { useCategoriesStore } from "@/stores/categories";
@@ -78,18 +80,24 @@ interface FieldSchema {
   options?: Array<{ label: string; value: string }>;
 }
 
-type FormData = Record<FieldSchema["id"], string>;
+type FormData = Record<FieldSchema["id"], string | number>;
 
 export default {
   components: {
     TextButton,
     FormField,
   },
-  setup(_, { emit }) {
+  props: {
+    selectedTransaction: {
+      type: Object,
+      required: false,
+    },
+  },
+  setup(props, { emit }) {
     const { categories } = useCategoriesStore();
     const { sources } = useSourcesStore();
     const { accounts } = useAccountsStore();
-    const { addTransaction } = useTransactionsStore();
+    const { addTransaction, editTransaction } = useTransactionsStore();
 
     const categoryOptions = computed(() =>
       Object.values(categories).map((category) => ({
@@ -118,7 +126,7 @@ export default {
       description: "",
       category: "",
       account: "",
-      amount: "",
+      amount: 0,
     });
 
     const formSchema: FieldSchema[] = [
@@ -157,6 +165,24 @@ export default {
       },
     ];
 
+    watchEffect(() => {
+      if (props.selectedTransaction) {
+        const dateObj = new Date(props.selectedTransaction.created_at);
+
+        // Format the date as "YYYY-MM-DD"
+        const formattedDate = dateObj.toLocaleDateString("en-CA", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        });
+
+        form.value = {
+          ...props.selectedTransaction,
+          created_at: formattedDate,
+        };
+      }
+    });
+
     const handleClose = () => {
       emit("close");
     };
@@ -165,9 +191,15 @@ export default {
       const formatted = {
         ...form.value,
         created_at: new Date(form.value.created_at + "T00:00"), // save as UTC
-        amount: form.value.amount * 100, // convert to cents
+        amount: Number(form.value.amount) * 100, // convert to cents
       };
-      addTransaction(formatted);
+
+      if (props.selectedTransaction) {
+        editTransaction(props.selectedTransaction.id, formatted);
+      } else {
+        addTransaction(formatted);
+      }
+
       handleClose();
     };
 

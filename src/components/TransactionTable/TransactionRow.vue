@@ -1,5 +1,8 @@
 <template>
-  <tr class="border-b border-stone-200">
+  <tr
+    class="border-b border-gray-200 hover:bg-gray-100 hover:cursor-pointer"
+    @click="handleClick"
+  >
     <TableDataCell>{{ transactionDate }}</TableDataCell>
     <TableDataCell>{{ transactionSource }}</TableDataCell>
     <TableDataCell>{{ transaction.description }}</TableDataCell>
@@ -15,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import { computed } from "vue";
 import { format } from "date-fns";
 import { useCategoriesStore } from "@/stores/categories";
 import { useSourcesStore } from "@/stores/sources";
@@ -32,25 +36,35 @@ export default {
   components: {
     TableDataCell,
   },
-  setup(props) {
+  setup(props, { emit }) {
     const { categories } = useCategoriesStore();
     const { sources } = useSourcesStore();
     const { accounts } = useAccountsStore();
 
-    const transactionDate = format(
-      new Date(props.transaction.created_at),
-      "yyyy/MM/dd"
+    const transactionDate = computed(() =>
+      format(new Date(props.transaction.created_at), "yyyy/MM/dd")
     );
 
-    const transactionAmountRaw = props.transaction.amount / 100;
-    const transactionAmountFormatted = transactionAmountRaw.toLocaleString(
-      "en-US",
-      { style: "currency", currency: "USD" }
+    const transactionAmountRaw = computed(() => props.transaction.amount / 100);
+    const transactionAmountFormatted = computed(() =>
+      transactionAmountRaw.value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      })
+    );
+    const transactionCategory = computed(
+      () => categories[props.transaction.category].name
+    );
+    const transactionSource = computed(
+      () => sources[props.transaction.source].name
+    );
+    const transactionAccount = computed(
+      () => accounts[props.transaction.account].name
     );
 
-    const transactionCategory = categories[props.transaction.category].name;
-    const transactionSource = sources[props.transaction.source].name;
-    const transactionAccount = accounts[props.transaction.account].name;
+    const handleClick = () => {
+      emit("edit", props.transaction.id);
+    };
 
     return {
       transactionDate,
@@ -59,6 +73,7 @@ export default {
       transactionAmountFormatted,
       transactionCategory,
       transactionAccount,
+      handleClick,
     };
   },
 };

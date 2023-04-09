@@ -1,5 +1,14 @@
-import { defineStore, acceptHMRUpdate } from "pinia";
+import { defineStore } from "pinia";
 import { supabase } from "@/lib/supabaseClient";
+
+export interface Transaction {
+  id: number;
+  name: string;
+}
+
+export interface TransactionsState {
+  transactions: Record<number, Transaction>;
+}
 
 export const useTransactionsStore = defineStore("transactions", {
   state: () => {
@@ -36,7 +45,7 @@ export const useTransactionsStore = defineStore("transactions", {
 
       this.transactions = transactions;
     },
-    async addTransaction(transactionData) {
+    async addTransaction(transactionData: Object) {
       const { data, error } = await supabase
         .from("transactions")
         .insert(transactionData)
@@ -49,11 +58,19 @@ export const useTransactionsStore = defineStore("transactions", {
 
       this.transactions[data[0].id] = data[0];
     },
+    async editTransaction(transactionId: number, transactionData: Object) {
+      const { data, error } = await supabase
+        .from("transactions")
+        .update(transactionData)
+        .eq("id", transactionId)
+        .select();
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      this.transactions[data[0].id] = data[0];
+    },
   },
 });
-
-if (import.meta.hot) {
-  import.meta.hot.accept(
-    acceptHMRUpdate(useTransactionsStore, import.meta.hot)
-  );
-}

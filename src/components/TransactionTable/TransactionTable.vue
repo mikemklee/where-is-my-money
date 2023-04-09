@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import TextButton from "@/components/TextButton.vue";
 import TransactionEditor from "@/components/TransactionEditor/TransactionEditor.vue";
@@ -19,6 +19,8 @@ const { getAccounts } = useAccountsStore();
 const transactionStore = useTransactionsStore();
 const { transactions } = storeToRefs(transactionStore);
 
+const selectedTransactionId = ref<number | null>(null);
+
 onMounted(() => {
   Promise.all([getCategories(), getSources(), getAccounts()]).then(() => {
     // load with no filters
@@ -27,6 +29,11 @@ onMounted(() => {
 });
 
 async function addTransaction() {
+  openEditor();
+}
+
+async function editTransaction(transactionId: number) {
+  selectedTransactionId.value = transactionId;
   openEditor();
 }
 
@@ -39,11 +46,21 @@ function closeEditor() {
 }
 
 const shouldShowEditor = ref(false);
+
+const selectedTransaction = computed(() => {
+  if (selectedTransactionId.value === null) {
+    return null;
+  }
+  return transactions.value[selectedTransactionId.value];
+});
 </script>
 
 <template>
   <div v-if="shouldShowEditor" class="my-4">
-    <TransactionEditor @close="closeEditor" />
+    <TransactionEditor
+      @close="closeEditor"
+      :selectedTransaction="selectedTransaction"
+    />
   </div>
   <div v-else class="flex justify-between mb-4 items-center">
     <h3 class="text-lg font-semibold">Transactions</h3>
@@ -65,6 +82,7 @@ const shouldShowEditor = ref(false);
         v-for="transaction in transactions"
         :key="transaction.id"
         :transaction="transaction"
+        @edit="editTransaction"
       />
     </tbody>
   </table>
