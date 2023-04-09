@@ -178,6 +178,7 @@ export default {
 
         form.value = {
           ...props.selectedTransaction,
+          amount: Number(props.selectedTransaction.amount) / 100, // convert to dollars
           created_at: formattedDate,
         };
       }
