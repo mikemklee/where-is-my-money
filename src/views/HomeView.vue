@@ -2,6 +2,7 @@
 import EyesIcon from "@/components/icons/EyesIcon.vue";
 import TransactionTable from "@/components/TransactionTable/TransactionTable.vue";
 import FilterSelector from "@/components/FilterSelector/FilterSelector.vue";
+import MyChart from "@/components/MyChart.vue";
 </script>
 
 <template>
@@ -18,6 +19,7 @@ import FilterSelector from "@/components/FilterSelector/FilterSelector.vue";
     <div class="flex w-full h-full">
       <FilterSelector />
       <div class="p-8 mx-auto min-w-[50rem]">
+        <MyChart />
         <TransactionTable />
       </div>
     </div>
