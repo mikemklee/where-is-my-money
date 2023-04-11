@@ -18,7 +18,7 @@ import MyChart from "@/components/MyChart.vue";
     </div>
     <div class="flex w-full h-full">
       <FilterSelector />
-      <div class="p-8 mx-auto min-w-[50rem]">
+      <div class="p-8 mx-auto min-w-[54rem]">
         <MyChart />
         <TransactionTable />
       </div>
